@@ -18,14 +18,15 @@ public class DbConstants {
         public enum ServiceType {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        NAME + " TEXT, " +
-                        SERVICE_TYPE + " TEXT, " +
-                        IMAGE + " BLOB, " +
-                        PHONE + " TEXT" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s BLOB, " +
+                                "%s TEXT);",
+                        TABLE_NAME, _ID, NAME, SERVICE_TYPE, IMAGE, PHONE
+                );
     }
 
     public static final class Chefs implements BaseColumns {
@@ -38,14 +39,15 @@ public class DbConstants {
                 WORK_HOURS = "WorkHours";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        NAME + " TEXT, " +
-                        NATIONALITY + " TEXT, " +
-                        IMAGE + " BLOB, " +
-                        WORK_HOURS + " TEXT" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s BLOB, " +
+                                "%s TEXT);",
+                        TABLE_NAME, _ID, NAME, NATIONALITY, IMAGE, WORK_HOURS
+                );
     }
 
     public static final class DeliveryMen implements BaseColumns {
@@ -57,13 +59,13 @@ public class DbConstants {
                 PHONE = "Phone";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        NAME + " TEXT, " +
-                        IMAGE + " BLOB, " +
-                        PHONE + " TEXT" +
-                        ");";
+                String.format("CREATE TABLE %s" +
+                        "(%s INT PRIMARY KEY NOT NULL, " +
+                        "%s TEXT, " +
+                        "%s BLOB, " +
+                        "%s TEXT);",
+                        TABLE_NAME, _ID, NAME, IMAGE, PHONE
+                );
     }
 
     public static final class Customers implements BaseColumns {
@@ -85,19 +87,24 @@ public class DbConstants {
         }
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        PHONE + " TEXT, " +
-                        REGION + " TEXT, " +
-                        STREET_NO + " TEXT, " +
-                        BUILDING_NO + " TEXT, " +
-                        POINTS + " INT, " +
-                        PAYMENT_METHOD + " INT, " +
-                        CARD_NO + " TEXT, " +
-                        CARD_SEC_NO + " TEXT, " +
-                        CARD_EXPIRE_DATA + " TEXT" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s INT, " +
+                                "%s INT, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s TEXT);",
+                        TABLE_NAME, _ID, PHONE,
+                        REGION, STREET_NO,
+                        BUILDING_NO, POINTS,
+                        PAYMENT_METHOD, CARD_NO,
+                        CARD_SEC_NO, CARD_EXPIRE_DATA
+                );
     }
 
     public static final class Reviews implements BaseColumns {
@@ -114,16 +121,22 @@ public class DbConstants {
         public enum Status {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        STARS + " INT NOT NULL DEFAULT 1, " +
-                        COMMENT + " TEXT, " +
-                        TIME + " INT NOT NULL, " +
-                        STATUS + " INT NOT NULL," +
-                        CUSTOMER_ID + " INT NOT NULL, " +
-                        REVIEWABLE_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                        "(%s INT PRIMARY KEY NOT NULL, " +
+                        "%s INT NOT NULL DEFAULT 1, " +
+                        "%s TEXT, " +
+                        "%s INT NOT NULL, " +
+                        "%s INT NOT NULL, " +
+                        "%s INT NOT NULL, " +
+                        "%s INT NOT NULL, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s), " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, _ID, STARS, COMMENT,
+                        TIME, STATUS, CUSTOMER_ID, REVIEWABLE_ID,
+                        CUSTOMER_ID, Customers.TABLE_NAME, Customers._ID,
+                        REVIEWABLE_ID, Reviewables.TABLE_NAME, Reviewables._ID
+                );
     }
 
     public static final class Admins  implements BaseColumns {
@@ -135,11 +148,12 @@ public class DbConstants {
         public enum Rank {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        RANK + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s INT NOT NULL);",
+                        TABLE_NAME, _ID, RANK
+                );
     }
 
     public static final class RestaurantManagers  implements BaseColumns {
@@ -149,11 +163,14 @@ public class DbConstants {
                 RESTR_ID = "RestrID";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        RESTR_ID + " INT" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s INT, " +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, _ID, RESTR_ID,
+                        RESTR_ID, Restaurants.TABLE_NAME, Restaurants._ID
+                );
     }
 
     public static final class Users implements BaseColumns {
@@ -171,15 +188,17 @@ public class DbConstants {
         }
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        NAME + " TEXT NOT NULL, " +
-                        EMAIL + " TEXT NOT NULL UNIQUE, " +
-                        PASSWORD + " TEXT NOT NULL, " +
-                        IMAGE + " BLOB, " +
-                        TYPE + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s TEXT NOT NULL UNIQUE, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s BLOB, " +
+                                "%s INT NOT NULL);",
+                        TABLE_NAME, _ID, NAME, EMAIL,
+                        PASSWORD, IMAGE, TYPE
+                );
     }
 
     public static final class Reviewables  implements BaseColumns {
@@ -193,11 +212,12 @@ public class DbConstants {
         }
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        TYPE + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s INT NOT NULL);",
+                        TABLE_NAME, _ID, TYPE
+                );
     }
 
     public static final class Branches  implements BaseColumns {
@@ -210,14 +230,17 @@ public class DbConstants {
                 RESTR_ID = "RetrID";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        REGION + " TEXT, " +
-                        STREET_NO + " TEXT, " +
-                        BUILDING_NO + " TEXT, " +
-                        RESTR_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s TEXT, " +
+                                "%s INT NOT NULL, " +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s) );",
+                        TABLE_NAME, _ID, REGION, STREET_NO, BUILDING_NO, RESTR_ID,
+                        RESTR_ID, Restaurants.TABLE_NAME, Restaurants._ID
+                );
     }
 
     public static final class ChefCooksMeals implements BaseColumns {
@@ -227,11 +250,16 @@ public class DbConstants {
                 MEAL_ID = "MealID";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        CHEF_ID + " INT NOT NULL, " +
-                        MEAL_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT NOT NULL, " +
+                                "%s INT NOT NULL" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, CHEF_ID, MEAL_ID,
+                        CHEF_ID, Chefs.TABLE_NAME, Chefs._ID,
+                        MEAL_ID, Meals.TABLE_NAME, Meals._ID
+                );
     }
 
     public static final class Meals implements BaseColumns {
@@ -247,15 +275,19 @@ public class DbConstants {
         public enum Type {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        NAME + " TEXT NOT NULL, " +
-                        IMAGE + " BLOB, " +
-                        PRICE + " REAL NOT NULL, " +
-                        TYPE + " INT, " +
-                        RESTR_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s BLOB, " +
+                                "%s REAL NOT NULL, " +
+                                "%s INT, " +
+                                "%s INT NOT NULL" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, _ID, NAME, IMAGE,
+                        PRICE, TYPE, RESTR_ID,
+                        RESTR_ID, Restaurants.TABLE_NAME, Restaurants._ID
+                );
     }
 
     public static final class Orders implements BaseColumns {
@@ -268,12 +300,13 @@ public class DbConstants {
         public enum Status {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        STATUS + " INT NOT NULL, " +
-                        TIME + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s INT NOT NULL, " +
+                                "%s INT NOT NULL);",
+                        TABLE_NAME, _ID, STATUS, TIME
+                );
     }
 
     public static final class Bills implements BaseColumns {
@@ -288,14 +321,18 @@ public class DbConstants {
         public enum Status {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        STATUS + " INT NOT NULL, " +
-                        AMOUNT + " REAL NOT NULL, " +
-                        DISCOUNT + " REAL NOT NULL, " +
-                        CUSTOMER_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s INT NOT NULL, " +
+                                "%s REAL NOT NULL, " +
+                                "%s REAL NOT NULL, " +
+                                "%s INT NOT NULL" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, _ID, STATUS, AMOUNT,
+                        DISCOUNT, CUSTOMER_ID,
+                        CUSTOMER_ID, Customers.TABLE_NAME, Customers._ID
+                );
     }
 
     public static final class Deliveries implements BaseColumns {
@@ -311,15 +348,21 @@ public class DbConstants {
         public enum Status {}
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        STATUS + " INT NOT NULL, " +
-                        LEAVE_TIME + " INT NOT NULL, " +
-                        ARRIVAL_TIME + " INT NOT NULL, " +
-                        DELIVERY_MAN_ID + " INT NOT NULL, " +
-                        BILL_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s INT NOT NULL, " +
+                                "%s INT NOT NULL, " +
+                                "%s INT NOT NULL, " +
+                                "%s INT NOT NULL, " +
+                                "%s INT NOT NULL" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, _ID, STATUS, LEAVE_TIME,
+                        ARRIVAL_TIME, DELIVERY_MAN_ID, BILL_ID,
+                        DELIVERY_MAN_ID, DeliveryMen.TABLE_NAME, DeliveryMen._ID,
+                        BILL_ID, Bills.TABLE_NAME, Bills._ID
+                );
     }
 
     public static final class BillContainsOrders implements BaseColumns {
@@ -328,11 +371,16 @@ public class DbConstants {
                 BILL_ID = "BillID", ORDER_ID = "OrderID";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        BILL_ID + " INT NOT NULL, " +
-                        ORDER_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT NOT NULL, " +
+                                "%s INT NOT NULL" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, BILL_ID, ORDER_ID,
+                        BILL_ID, Bills.TABLE_NAME, Bills._ID,
+                        ORDER_ID, Orders.TABLE_NAME, Orders._ID
+                );
     }
 
     public static final class OrderContainsMeals implements BaseColumns {
@@ -341,11 +389,16 @@ public class DbConstants {
                 ORDER_ID = "OrderID", MEAL_ID = "MealID";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        ORDER_ID + " INT NOT NULL, " +
-                        MEAL_ID + " INT NOT NULL" +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT NOT NULL, " +
+                                "%s INT NOT NULL" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
+                                "FOREIGN KEY (%s) REFERENCES %s(%s));",
+                        TABLE_NAME, ORDER_ID, MEAL_ID,
+                        ORDER_ID, Orders.TABLE_NAME, Orders._ID,
+                        MEAL_ID, Meals.TABLE_NAME, Meals._ID
+                );
     }
 
     public static final class PromoCode implements BaseColumns {
@@ -360,11 +413,13 @@ public class DbConstants {
         }
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME +
-                        "(" +
-                        _ID + " INT PRIMARY KEY NOT NULL, " +
-                        CODE_NO + " TEXT NOT NULL UNIQUE, " +
-                        STATUS + " INT NOT NULL DEFAULT " + Status.Unused.ordinal() +
-                        ");";
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "%s TEXT NOT NULL UNIQUE, " +
+                                "%s INT NOT NULL DEFAULT %d);",
+                        TABLE_NAME, _ID, CODE_NO, STATUS,
+                        Status.Unused.ordinal()
+                );
     }
 }

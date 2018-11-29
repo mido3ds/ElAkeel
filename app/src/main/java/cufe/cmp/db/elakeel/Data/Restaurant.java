@@ -17,7 +17,7 @@ public class Restaurant extends Entity {
         id = cursor.getInt(cursor.getColumnIndexOrThrow(Restaurants._ID));
         name = cursor.getString(cursor.getColumnIndexOrThrow(Restaurants.NAME));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(Restaurants.IMAGE));
-//        serviceType = Restaurants.ServiceType(cursor.getInt(cursor.getColumnIndexOrThrow(Restaurants.SERVICE_TYPE))); //TODO
+        serviceType = Restaurants.ServiceType.values()[cursor.getInt(cursor.getColumnIndexOrThrow(Restaurants.SERVICE_TYPE))];
         phoneNo = cursor.getString(cursor.getColumnIndexOrThrow(Restaurants.PHONE));
     }
 

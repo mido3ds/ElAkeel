@@ -15,17 +15,19 @@ public class DbConstants {
                 IMAGE = "Image",
                 PHONE = "Phone";
 
-        public enum ServiceType {}
+        public enum ServiceType {
+            Unspecified
+        }//TODO
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s TEXT, " +
-                                "%s TEXT, " +
+                                "(%s INT PRIMARY KEY, " +
+                                "%s TEXT NOT NULL UNIQUE, " +
+                                "%s INT DEFAULT %d, " +
                                 "%s BLOB, " +
-                                "%s TEXT);",
-                        TABLE_NAME, _ID, NAME, SERVICE_TYPE, IMAGE, PHONE
+                                "%s TEXT NOT NULL);",
+                        TABLE_NAME, _ID, NAME, SERVICE_TYPE, ServiceType.Unspecified.ordinal(), IMAGE, PHONE
                 );
         public static final String SQL_INSERT =
                 String.format(
@@ -56,8 +58,8 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s TEXT, " +
+                                "(%s INT PRIMARY KEY, " +
+                                "%s TEXT NOT NULL UNIQUE, " +
                                 "%s TEXT, " +
                                 "%s BLOB, " +
                                 "%s TEXT);",
@@ -90,10 +92,10 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format("CREATE TABLE %s" +
-                        "(%s INT PRIMARY KEY NOT NULL, " +
-                        "%s TEXT, " +
+                        "(%s INT PRIMARY KEY, " +
+                        "%s TEXT NOT NULL UNIQUE, " +
                         "%s BLOB, " +
-                        "%s TEXT);",
+                        "%s TEXT NOT NULL);",
                         TABLE_NAME, _ID, NAME, IMAGE, PHONE
                 );
         public static final String SQL_INSERT =
@@ -116,7 +118,7 @@ public class DbConstants {
     public static final class Customers implements BaseColumns {
         public static final String TABLE_NAME = "Customers";
         public static final String
-                _ID = "ID",
+                USER_ID = "UserID",
                 PHONE = "Phone",
                 REGION = "Region",
                 STREET_NO = "StreetNo",
@@ -128,36 +130,42 @@ public class DbConstants {
                 CARD_EXPIRE_DATA = "CardExpireData";
 
         public enum PaymentMethod {
-            CreditCard, Promo, Cash
+            CreditCard, Cash
         }
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s TEXT, " +
-                                "%s TEXT, " +
-                                "%s TEXT, " +
-                                "%s TEXT, " +
-                                "%s INT, " +
-                                "%s INT, " +
+                                "(%s INT UNIQUE NOT NULL REFERENCES %s(%s), " +
+                                "%s TEXT NOT NULL UNIQUE, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s INT DEFAULT 0, " +
+                                "%s INT DEFAULT $d, " +
                                 "%s TEXT, " +
                                 "%s TEXT, " +
                                 "%s TEXT);",
-                        TABLE_NAME, _ID, PHONE,
-                        REGION, STREET_NO,
-                        BUILDING_NO, POINTS,
-                        PAYMENT_METHOD, CARD_NO,
-                        CARD_SEC_NO, CARD_EXPIRE_DATA
+                        TABLE_NAME,
+                        USER_ID, Users.TABLE_NAME, Users._ID,
+                        PHONE,
+                        REGION,
+                        STREET_NO,
+                        BUILDING_NO,
+                        POINTS,
+                        PAYMENT_METHOD, PaymentMethod.Cash.ordinal(),
+                        CARD_NO,
+                        CARD_SEC_NO,
+                        CARD_EXPIRE_DATA
                 );
         public static final String SQL_INSERT =
                 String.format(
-                        "INSERT INTO %s(%s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                        "INSERT INTO %s(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                         TABLE_NAME, PHONE,
                         REGION, STREET_NO,
                         BUILDING_NO, POINTS,
                         PAYMENT_METHOD, CARD_NO,
-                        CARD_SEC_NO, CARD_EXPIRE_DATA
+                        CARD_SEC_NO, CARD_EXPIRE_DATA, USER_ID
                 );
         public static final String SQL_UPDATE_ALL =
                 String.format(
@@ -166,12 +174,12 @@ public class DbConstants {
                         REGION, STREET_NO,
                         BUILDING_NO, POINTS,
                         PAYMENT_METHOD, CARD_NO,
-                        CARD_SEC_NO, CARD_EXPIRE_DATA, _ID
+                        CARD_SEC_NO, CARD_EXPIRE_DATA, USER_ID
                 );
         public static final String SQL_DELETE =
                 String.format(
                         "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, _ID
+                        TABLE_NAME, USER_ID
                 );
     }
 
@@ -186,22 +194,26 @@ public class DbConstants {
                 CUSTOMER_ID = "CustomerID",
                 REVIEWABLE_ID = "ReviewableID";
 
-        public enum Status {}
+        public enum Status {
+            Posted, Seen, Solved
+        }
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
-                        "(%s INT PRIMARY KEY NOT NULL, " +
-                        "%s INT NOT NULL DEFAULT 1, " +
-                        "%s TEXT, " +
-                        "%s INT NOT NULL, " +
-                        "%s INT NOT NULL, " +
-                        "%s INT NOT NULL, " +
-                        "%s INT NOT NULL, " +
-                        "FOREIGN KEY (%s) REFERENCES %s(%s), " +
-                        "FOREIGN KEY (%s) REFERENCES %s(%s));",
-                        TABLE_NAME, _ID, STARS, COMMENT,
-                        TIME, STATUS, CUSTOMER_ID, REVIEWABLE_ID,
+                        "CREATE TABLE %s(" +
+                            "%s INT PRIMARY KEY, " +
+                            "%s INT DEFAULT 1, " +
+                            "%s TEXT, " +
+                            "%s INT NOT NULL, " +
+                            "%s INT DEFAULT %d, " +
+                            "%s INT NOT NULL REFERENCES %s(%s), " +
+                            "%s INT NOT NULL REFERENCES %s(%s));",
+                        TABLE_NAME,
+                        _ID,
+                        STARS,
+                        COMMENT,
+                        TIME,
+                        STATUS, Status.Posted.ordinal(),
                         CUSTOMER_ID, Customers.TABLE_NAME, Customers._ID,
                         REVIEWABLE_ID, Reviewables.TABLE_NAME, Reviewables._ID
                 );
@@ -230,12 +242,12 @@ public class DbConstants {
                 _ID = "ID",
                 RANK = "Rank";
 
-        public enum Rank {}
+        public enum Rank {}//TODO
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL);",
                         TABLE_NAME, _ID, RANK
                 );
@@ -265,7 +277,7 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
                                 "%s INT, " +
                                 "FOREIGN KEY (%s) REFERENCES %s(%s));",
                         TABLE_NAME, _ID, RESTR_ID,
@@ -305,7 +317,7 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
                                 "%s TEXT NOT NULL, " +
@@ -346,7 +358,7 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL);",
                         TABLE_NAME, _ID, TYPE
                 );
@@ -379,10 +391,10 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s TEXT, " +
-                                "%s TEXT, " +
-                                "%s TEXT, " +
+                                "(%s INT PRIMARY KEY, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s TEXT NOT NULL, " +
+                                "%s TEXT NOT NULL, " +
                                 "%s INT NOT NULL, " +
                                 "FOREIGN KEY (%s) REFERENCES %s(%s) );",
                         TABLE_NAME, _ID, REGION, STREET_NO, BUILDING_NO, RESTR_ID,
@@ -405,8 +417,8 @@ public class DbConstants {
                 );
     }
 
-    public static final class ChefCooksMeals implements BaseColumns {
-        public static final String TABLE_NAME = "ChefCooksMeals";
+    public static final class ChefsCookMeals implements BaseColumns {
+        public static final String TABLE_NAME = "ChefsCookMeals";
         public static final String
                 CHEF_ID = "ChefID",
                 MEAL_ID = "MealID";
@@ -434,13 +446,13 @@ public class DbConstants {
                 TYPE = "Type",
                 RESTR_ID = "RestrID";
 
-        public enum Type {}
+        public enum Type {}//TODO
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s TEXT NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
+                                "%s TEXT NOT NULL UNIQUE, " +
                                 "%s BLOB, " +
                                 "%s REAL NOT NULL, " +
                                 "%s INT, " +
@@ -476,12 +488,12 @@ public class DbConstants {
                 STATUS = "Status",
                 TIME = "Time";
 
-        public enum Status {}
+        public enum Status {}//TODO
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL, " +
                                 "%s INT NOT NULL);",
                         TABLE_NAME, _ID, STATUS, TIME
@@ -519,8 +531,8 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s INT NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
+                                "%s INT DEFAULT 0, " +
                                 "%s REAL NOT NULL, " +
                                 "%s REAL NOT NULL, " +
                                 "%s INT NOT NULL" +
@@ -558,12 +570,12 @@ public class DbConstants {
                 DELIVERY_MAN_ID = "DeliveryManID",
                 BILL_ID = "BillID";
 
-        public enum Status {}
+        public enum Status {}//TODO
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
+                                "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL, " +
                                 "%s INT NOT NULL, " +
                                 "%s INT NOT NULL, " +
@@ -613,8 +625,8 @@ public class DbConstants {
                 );
     }
 
-    public static final class OrderContainsMeals implements BaseColumns {
-        public static final String TABLE_NAME = "OrderContainsMeals";
+    public static final class OrdersContainMeals implements BaseColumns {
+        public static final String TABLE_NAME = "OrdersContainMeals";
         public static final String
                 ORDER_ID = "OrderID", MEAL_ID = "MealID";
 
@@ -631,39 +643,81 @@ public class DbConstants {
                 );
     }
 
-    public static final class PromoCode implements BaseColumns {
-        public static final String TABLE_NAME = "PromoCode";
+    public static final class PromoCodes implements BaseColumns {
+        public static final String TABLE_NAME = "PromoCodes";
         public static final String
                 _ID = "ID",
                 CODE_NO = "CodeNo",
-                STATUS = "Status";
-
-        public enum Status {
-            Unused, Used
-        }
+                CUSTOMER_ID = "CustomerID";
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT PRIMARY KEY NOT NULL, " +
-                                "%s TEXT NOT NULL UNIQUE, " +
-                                "%s INT NOT NULL);",
-                        TABLE_NAME, _ID, CODE_NO, STATUS
+                                "(%s INT PRIMARY KEY, " +
+                                "%s TEXT NOT NULL UNIQUE," +
+                                "%s INT REFERENCES %s(%s));",
+                        TABLE_NAME, _ID, CODE_NO,
+                        CUSTOMER_ID, Customers.TABLE_NAME, Customers._ID
                 );
         public static final String SQL_INSERT =
                 String.format(
                         "INSERT INTO %s(%s, %s) VALUES(?, ?);",
-                        TABLE_NAME, CODE_NO, STATUS
+                        TABLE_NAME, CODE_NO, CUSTOMER_ID
                 );
         public static final String SQL_UPDATE_ALL =
                 String.format(
                         "UPDATE %s SET %s=?, %s=? WHERE %s=?;",
-                        TABLE_NAME, CODE_NO, STATUS, _ID
+                        TABLE_NAME, CODE_NO, CUSTOMER_ID, _ID
                 );
         public static final String SQL_DELETE =
                 String.format(
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, _ID
+                );
+    }
+
+    public static final class Ingredients implements BaseColumns {
+        public static final String TABLE_NAME = "Ingredients";
+        public static final String
+                _ID = "ID",
+                NAME = "Name";
+
+        public static final String SQL_CREATE_TABLE =
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT PRIMARY KEY, " +
+                                "%s TEXT NOT NULL UNIQUE);",
+                        TABLE_NAME, _ID, NAME
+                );
+        public static final String SQL_INSERT =
+                String.format(
+                        "INSERT INTO %s(%s) VALUES(?, ?);",
+                        TABLE_NAME, NAME
+                );
+        public static final String SQL_UPDATE_ALL =
+                String.format(
+                        "UPDATE %s SET %s=? WHERE %s=?;",
+                        TABLE_NAME, NAME, _ID
+                );
+        public static final String SQL_DELETE =
+                String.format(
+                        "DELETE FROM %s WHERE %s=?;",
+                        TABLE_NAME, _ID
+                );
+    }
+
+    public static final class MealsContainIngredients implements BaseColumns {
+        public static final String TABLE_NAME = "PromoCodes";
+        public static final String
+                MEAL_ID = "MealID",
+                INGRED_ID = "IngredID";
+
+        public static final String SQL_CREATE_TABLE =
+                String.format(
+                        "CREATE TABLE %s" +
+                                "(%s INT NOT NULL, " +
+                                "%s INT NOT NULL);",
+                        TABLE_NAME, MEAL_ID, INGRED_ID
                 );
     }
 }

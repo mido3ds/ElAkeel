@@ -84,13 +84,14 @@ public class Restaurant implements Entity {
     public boolean update(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(Restaurants.SQL_UPDATE_ALL);
         bindData(statement);
+        statement.bindLong(4, id);
         return statement.executeUpdateDelete() == 1;
     }
 
     @Override
     public boolean delete(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(Restaurants.SQL_DELETE);
-        bindData(statement);
+        statement.bindLong(0, id);
         return statement.executeUpdateDelete() == 1;
     }
 }

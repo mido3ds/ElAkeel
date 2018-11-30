@@ -47,6 +47,7 @@ public class Chef implements Entity {
     public boolean update(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(Chefs.SQL_UPDATE_ALL);
         bindData(statement);
+        statement.bindLong(4, id);
         return statement.executeUpdateDelete() == 1;
     }
 

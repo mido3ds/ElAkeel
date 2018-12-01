@@ -7,26 +7,27 @@ import android.database.sqlite.SQLiteStatement;
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.DeliveryMen;
 
 public class DeliveryMan implements Entity {
-    private long id;
+    private long reviewableID;
     private String name;
     private byte[] image;
     private String phone;
 
-    public DeliveryMan(String name, byte[] image, String phone) {
+    public DeliveryMan(long reviewableID, String name, byte[] image, String phone) {
+        this.reviewableID = reviewableID; //TODO make it an object of Reviewable
         this.name = name;
         this.image = image;
         this.phone = phone;
     }
 
     public DeliveryMan(Cursor cursor) {
-        id = cursor.getLong(cursor.getColumnIndexOrThrow(DeliveryMen._ID));
+        reviewableID = cursor.getLong(cursor.getColumnIndexOrThrow(DeliveryMen.REVIEWABLE_ID));
         name = cursor.getString(cursor.getColumnIndexOrThrow(DeliveryMen.NAME));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(DeliveryMen.IMAGE));
         phone = cursor.getString(cursor.getColumnIndexOrThrow(DeliveryMen.PHONE));
     }
 
-    public long getId() {
-        return id;
+    public long getReviewableID() {
+        return reviewableID;
     }
 
     public String getName() {
@@ -57,28 +58,28 @@ public class DeliveryMan implements Entity {
     public boolean insert(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(DeliveryMen.SQL_INSERT);
         bindData(statement);
-        id = statement.executeInsert();
-        return id != -1;
+        return statement.executeInsert() != -1;
     }
 
     private void bindData(SQLiteStatement statement) {
         statement.bindString(0, name);
         statement.bindBlob(1, image);
         statement.bindString(2, phone);
+
+        statement.bindLong(3, reviewableID);
     }
 
     @Override
     public boolean update(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(DeliveryMen.SQL_UPDATE_ALL);
         bindData(statement);
-        statement.bindLong(3, id);
         return statement.executeUpdateDelete() == 1;
     }
 
     @Override
     public boolean delete(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(DeliveryMen.SQL_DELETE);
-        statement.bindLong(0, id);
+        statement.bindLong(0, reviewableID);
         return statement.executeUpdateDelete() == 1;
     }
 }

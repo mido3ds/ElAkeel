@@ -17,8 +17,8 @@ public class Customer implements Entity {
 
     public Customer(User user, String phone, String region, String streetNo, String buildingNo, long points,
                     Customers.PaymentMethod paymentMethod, String cardNo, String cardSecNo, String cardExpireData) {
-        this.userID = user.getId();
         if (user.getType() != Users.Type.Customer) throw new IllegalArgumentException("user is not customer");
+        this.userID = user.getId();
 
         this.phone = phone;
         this.region = region;

@@ -18,7 +18,7 @@ public class User implements Entity {
     private Users.Type type;
 
     public User(Cursor cursor) {
-        id = cursor.getLong(cursor.getColumnIndexOrThrow(Users._ID));
+        id = cursor.getLong(cursor.getColumnIndexOrThrow(Users.ID));
         name = cursor.getString(cursor.getColumnIndexOrThrow(Users.NAME));
         email = cursor.getString(cursor.getColumnIndexOrThrow(Users.EMAIL));
         hashedPassword = cursor.getString(cursor.getColumnIndexOrThrow(Users.PASSWORD));
@@ -100,6 +100,7 @@ public class User implements Entity {
     public boolean update(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(Users.SQL_UPDATE_ALL);
         bindData(statement);
+        statement.bindLong(5, id);
         return statement.executeUpdateDelete() == 1;
     }
 

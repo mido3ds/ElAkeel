@@ -293,10 +293,12 @@ public class DbConstants {
                 String.format(
                         "CREATE TABLE %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "PRIMARY KEY(%s, %s));",
                         TABLE_NAME,
                         USER_ID, Users.TABLE_NAME, Users.ID,
-                        RESTR_ID, Restaurants.TABLE_NAME, Restaurants.REVIEWABLE_ID
+                        RESTR_ID, Restaurants.TABLE_NAME, Restaurants.REVIEWABLE_ID,
+                        USER_ID, RESTR_ID
                 );
         public static final String SQL_INSERT =
                 String.format(
@@ -452,10 +454,12 @@ public class DbConstants {
                 String.format(
                         "CREATE TABLE %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE," +
+                                "PRIMARY KEY(%s, %s));",
                         TABLE_NAME,
                         CHEF_ID, Chefs.TABLE_NAME, Chefs.REVIEWABLE_ID,
-                        MEAL_ID, Meals.TABLE_NAME, Meals.ID
+                        MEAL_ID, Meals.TABLE_NAME, Meals.ID,
+                        CHEF_ID, MEAL_ID
                 );
     }
 
@@ -650,10 +654,12 @@ public class DbConstants {
                 String.format(
                         "CREATE TABLE %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "PRIMARY KEY(%s, %s));",
                         TABLE_NAME,
                         BILL_ID, Bills.TABLE_NAME, Bills.ID,
-                        ORDER_ID, Orders.TABLE_NAME, Orders.ID
+                        ORDER_ID, Orders.TABLE_NAME, Orders.ID,
+                        BILL_ID, ORDER_ID
                 );
     }
 
@@ -666,10 +672,12 @@ public class DbConstants {
                 String.format(
                         "CREATE TABLE %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "PRIMARY KEY(%s, %s));",
                         TABLE_NAME,
                         ORDER_ID, Orders.TABLE_NAME, Orders.ID,
-                        MEAL_ID, Meals.TABLE_NAME, Meals.ID
+                        MEAL_ID, Meals.TABLE_NAME, Meals.ID,
+                        ORDER_ID, MEAL_ID
                 );
     }
 
@@ -750,10 +758,12 @@ public class DbConstants {
                 String.format(
                         "CREATE TABLE %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "PRIMARY KEY(%s, %s));",
                         TABLE_NAME,
                         MEAL_ID, Meals.TABLE_NAME, Meals.ID,
-                        INGRED_ID, Ingredients.TABLE_NAME, Ingredients.ID
+                        INGRED_ID, Ingredients.TABLE_NAME, Ingredients.ID,
+                        MEAL_ID, INGRED_ID
                 );
     }
 }

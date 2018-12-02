@@ -1,29 +1,31 @@
-package cufe.cmp.db.elakeel.Data.Entities;
+package cufe.cmp.db.elakeel.Data.Entities.Reviewable;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.DataBase.DbConstants;
+import cufe.cmp.db.elakeel.Data.Entities.Entity;
 
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.Restaurants;
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.Restaurants.ServiceType;
 
 public class Restaurant implements Entity {
-    private long reviewableID;
+    private Reviewable reviewable;
     private String name;
     private ServiceType serviceType;
     private byte[] image;
     private String phoneNo;
 
     public Restaurant(Cursor cursor) {
-        reviewableID = cursor.getLong(cursor.getColumnIndexOrThrow(Restaurants.REVIEWABLE_ID));
+        reviewable = new Reviewable(cursor);
         name = cursor.getString(cursor.getColumnIndexOrThrow(Restaurants.NAME));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(Restaurants.IMAGE));
         serviceType = Restaurants.ServiceType.values()[cursor.getInt(cursor.getColumnIndexOrThrow(Restaurants.SERVICE_TYPE))];
         phoneNo = cursor.getString(cursor.getColumnIndexOrThrow(Restaurants.PHONE));
     }
 
-    public Restaurant(long reviewableID, String name, ServiceType serviceType, byte[] image, String phoneNo) {
-        this.reviewableID = reviewableID; //TODO make it an object of Reviewable
+    public Restaurant(String name, ServiceType serviceType, byte[] image, String phoneNo) {
+        reviewable = new Reviewable(DbConstants.Reviewables.Type.Restaurant);
         this.name = name;
         this.serviceType = serviceType;
         this.image = image;
@@ -62,8 +64,8 @@ public class Restaurant implements Entity {
         this.image = image;
     }
 
-    public long getReviewableID() {
-        return reviewableID;
+    public Reviewable getReviewable() {
+        return reviewable;
     }
 
     private void bindData(SQLiteStatement statement) {
@@ -72,11 +74,12 @@ public class Restaurant implements Entity {
         statement.bindBlob(2, image);
         statement.bindString(3, phoneNo);
 
-        statement.bindLong(4, reviewableID);
+        statement.bindLong(4, reviewable.getId());
     }
 
     @Override
     public boolean insert(SQLiteDatabase db) {
+        reviewable.insert(db);
         SQLiteStatement statement = db.compileStatement(Restaurants.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -91,8 +94,6 @@ public class Restaurant implements Entity {
 
     @Override
     public boolean delete(SQLiteDatabase db) {
-        SQLiteStatement statement = db.compileStatement(Restaurants.SQL_DELETE);
-        statement.bindLong(0, reviewableID);
-        return statement.executeUpdateDelete() == 1;
+        return reviewable.delete(db);
     }
 }

@@ -1,20 +1,22 @@
-package cufe.cmp.db.elakeel.Data.Entities;
+package cufe.cmp.db.elakeel.Data.Entities.Reviewable;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.DataBase.DbConstants;
+import cufe.cmp.db.elakeel.Data.Entities.Entity;
 
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.Chefs;
 
 public class Chef implements Entity {
-    private long reviewableID;
+    private Reviewable reviewable;
     private String name;
     private String nationality;
     private byte[] image;
     private String workHours;
 
-    public Chef(long reviewableID, String name, String nationality, byte[] image, String workHours) {
-        this.reviewableID = reviewableID; //TODO make it an object of Reviewable
+    public Chef(String name, String nationality, byte[] image, String workHours) {
+        reviewable = new Reviewable(DbConstants.Reviewables.Type.Chef);
         this.name = name;
         this.nationality = nationality;
         this.image = image;
@@ -22,15 +24,15 @@ public class Chef implements Entity {
     }
 
     public Chef(Cursor cursor) {
-        reviewableID = cursor.getLong(cursor.getColumnIndexOrThrow(Chefs.REVIEWABLE_ID));
+        reviewable = new Reviewable(cursor);
         name = cursor.getString(cursor.getColumnIndexOrThrow(Chefs.NAME));
         nationality = cursor.getString(cursor.getColumnIndexOrThrow(Chefs.NATIONALITY));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(Chefs.IMAGE));
         workHours = cursor.getString(cursor.getColumnIndexOrThrow(Chefs.WORK_HOURS));
     }
 
-    public long getReviewableID() {
-        return reviewableID;
+    public Reviewable getReviewable() {
+        return reviewable;
     }
 
     public String getName() {
@@ -67,6 +69,7 @@ public class Chef implements Entity {
 
     @Override
     public boolean insert(SQLiteDatabase db) {
+        reviewable.insert(db);
         SQLiteStatement statement = db.compileStatement(Chefs.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -78,7 +81,7 @@ public class Chef implements Entity {
         statement.bindBlob(2, image);
         statement.bindString(3, workHours);
 
-        statement.bindLong(4, reviewableID);
+        statement.bindLong(4, reviewable.getId());
     }
 
     @Override
@@ -90,8 +93,6 @@ public class Chef implements Entity {
 
     @Override
     public boolean delete(SQLiteDatabase db) {
-        SQLiteStatement statement = db.compileStatement(Chefs.SQL_DELETE);
-        statement.bindLong(0, reviewableID);
-        return statement.executeUpdateDelete() == 1;
+        return reviewable.delete(db);
     }
 }

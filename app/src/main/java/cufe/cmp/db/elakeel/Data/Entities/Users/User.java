@@ -1,8 +1,9 @@
-package cufe.cmp.db.elakeel.Data.Entities;
+package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.Entities.Entity;
 import cufe.cmp.db.elakeel.Data.Utility.PasswordAuthentication;
 
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.Users;

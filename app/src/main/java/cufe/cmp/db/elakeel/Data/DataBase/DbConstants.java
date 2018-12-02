@@ -42,11 +42,6 @@ public class DbConstants {
                         "UPDATE %s SET %s=?, %s=?, %s=?, %s=? WHERE %s=?;",
                         TABLE_NAME, NAME, SERVICE_TYPE, IMAGE, PHONE, REVIEWABLE_ID
                 );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, REVIEWABLE_ID
-                );
     }
 
     public static final class Chefs {
@@ -83,11 +78,6 @@ public class DbConstants {
                         "UPDATE %s SET %s=?, %s=?, %s=?, %s=? WHERE %s=?;",
                         TABLE_NAME, NAME, NATIONALITY, IMAGE, WORK_HOURS, REVIEWABLE_ID
                 );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, REVIEWABLE_ID
-                );
     }
 
     public static final class DeliveryMen {
@@ -120,11 +110,6 @@ public class DbConstants {
                 String.format(
                         "UPDATE %s SET %s=?, %s=?, %s=? WHERE %s=?;",
                         TABLE_NAME, NAME, IMAGE, PHONE, REVIEWABLE_ID
-                );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, REVIEWABLE_ID
                 );
     }
 
@@ -188,11 +173,6 @@ public class DbConstants {
                         BUILDING_NO, POINTS,
                         PAYMENT_METHOD, CARD_NO,
                         CARD_SEC_NO, CARD_EXPIRE_DATA, USER_ID
-                );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, USER_ID
                 );
     }
 
@@ -276,11 +256,6 @@ public class DbConstants {
                         "UPDATE %s SET %s=? WHERE %s=?;",
                         TABLE_NAME, RANK, USER_ID
                 );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, USER_ID
-                );
     }
 
     public static final class RestaurantManagers  {
@@ -292,7 +267,7 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                                "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "PRIMARY KEY(%s, %s));",
                         TABLE_NAME,
@@ -304,16 +279,6 @@ public class DbConstants {
                 String.format(
                         "INSERT INTO %s(%s, %s) VALUES(?, ?);",
                         TABLE_NAME, RESTR_ID, USER_ID
-                );
-        public static final String SQL_UPDATE_ALL =
-                String.format(
-                        "UPDATE %s SET %s=? WHERE %s=?;",
-                        TABLE_NAME, RESTR_ID, USER_ID
-                );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, USER_ID
                 );
     }
 
@@ -505,11 +470,6 @@ public class DbConstants {
                         "UPDATE %s SET %s=?, %s=?, %s=?, %s=?, %s=? WHERE %s=?;",
                         TABLE_NAME, NAME, IMAGE,
                         PRICE, TYPE, RESTR_ID, REVIEWABLE_ID
-                );
-        public static final String SQL_DELETE =
-                String.format(
-                        "DELETE FROM %s WHERE %s=?;",
-                        TABLE_NAME, REVIEWABLE_ID
                 );
     }
 

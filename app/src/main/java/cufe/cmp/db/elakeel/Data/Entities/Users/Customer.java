@@ -1,14 +1,15 @@
-package cufe.cmp.db.elakeel.Data.Entities;
+package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.Entities.Entity;
 
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.Customers;
 import static cufe.cmp.db.elakeel.Data.DataBase.DbConstants.Users;
 
 public class Customer implements Entity {
-    private long userID;
+    private User user;
     private String phone;
     private String region, streetNo, buildingNo;
     private long points;
@@ -18,7 +19,7 @@ public class Customer implements Entity {
     public Customer(User user, String phone, String region, String streetNo, String buildingNo, long points,
                     Customers.PaymentMethod paymentMethod, String cardNo, String cardSecNo, String cardExpireData) {
         if (user.getType() != Users.Type.Customer) throw new IllegalArgumentException("user is not customer");
-        this.userID = user.getId();
+        this.user = user;
 
         this.phone = phone;
         this.region = region;
@@ -32,7 +33,7 @@ public class Customer implements Entity {
     }
 
     public Customer(Cursor cursor) {
-        userID = cursor.getLong(cursor.getColumnIndexOrThrow(Customers.USER_ID));
+        user = new User(cursor);
         phone = cursor.getString(cursor.getColumnIndexOrThrow(Customers.PHONE));
         region = cursor.getString(cursor.getColumnIndexOrThrow(Customers.REGION));
         streetNo = cursor.getString(cursor.getColumnIndexOrThrow(Customers.STREET_NO));
@@ -42,6 +43,82 @@ public class Customer implements Entity {
         cardNo = cursor.getString(cursor.getColumnIndexOrThrow(Customers.CARD_NO));
         cardSecNo = cursor.getString(cursor.getColumnIndexOrThrow(Customers.CARD_SEC_NO));
         cardExpireData = cursor.getString(cursor.getColumnIndexOrThrow(Customers.CARD_EXPIRE_DATA));
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getStreetNo() {
+        return streetNo;
+    }
+
+    public void setStreetNo(String streetNo) {
+        this.streetNo = streetNo;
+    }
+
+    public String getBuildingNo() {
+        return buildingNo;
+    }
+
+    public void setBuildingNo(String buildingNo) {
+        this.buildingNo = buildingNo;
+    }
+
+    public long getPoints() {
+        return points;
+    }
+
+    public void setPoints(long points) {
+        this.points = points;
+    }
+
+    public Customers.PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(Customers.PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public String getCardSecNo() {
+        return cardSecNo;
+    }
+
+    public void setCardSecNo(String cardSecNo) {
+        this.cardSecNo = cardSecNo;
+    }
+
+    public String getCardExpireData() {
+        return cardExpireData;
+    }
+
+    public void setCardExpireData(String cardExpireData) {
+        this.cardExpireData = cardExpireData;
     }
 
     @Override
@@ -69,13 +146,11 @@ public class Customer implements Entity {
         statement.bindString(7, cardSecNo);
         statement.bindString(8, cardExpireData);
 
-        statement.bindLong(9, userID);
+        statement.bindLong(9, user.getId());
     }
 
     @Override
     public boolean delete(SQLiteDatabase db) {
-        SQLiteStatement statement = db.compileStatement(Customers.SQL_DELETE);
-        statement.bindLong(0, userID);
-        return statement.executeUpdateDelete() == 1;
+        return user.delete(db);
     }
 }

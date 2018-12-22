@@ -4,7 +4,7 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
-              tools:context=".ui.MenuActivity">
+              tools:context=".UI.Sherif.MenuActivity">
 
     <ListView
             android:id="@+id/MenuList"

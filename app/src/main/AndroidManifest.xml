@@ -4,64 +4,64 @@
 
     <application android:theme="@style/AppTheme">
         <activity
-                android:name=".ui.AfterLoginActivity"
+                android:name=".UI.Hossam.AfterLoginActivity"
                 android:label="@string/title_activity_after_login"
                 android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-                android:name=".ui.PrevOrdersList_View"
+                android:name=".UI.Hossam.PrevOrdersListActivity"
                 android:label="@string/title_activity_prev_orders_list__view"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.Restuarant_Chefs"
+                android:name=".UI.Hossam.RestuarantChefsActivity"
                 android:label="@string/title_activity_restuarant__chefs"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.LoginActivity"
+                android:name=".UI.Hossam.LoginActivity"
                 android:label="@string/title_activity_login"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
-                android:name=".ui.chefs_list_view"
+                android:name=".UI.Hossam.ChefListActivity"
                 android:label="@string/title_activity_chefs_list_view"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.Restuarant_Menu"
+                android:name=".UI.Hossam.RestuarantMenuActivity"
                 android:label="@string/title_activity_restuarant__menu"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.Menu_List_View"
+                android:name=".UI.Hossam.MenuListActivity"
                 android:label="@string/title_activity_menu__list__view"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.Meal"
+                android:name=".UI.Hossam.MealActivity"
                 android:label="@string/title_activity_meal"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.ReviewAcivity"
+                android:name=".UI.Hossam.ReviewAcivity"
                 android:label="@string/title_activity_review_acivity"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".ui.Meal_Rate_List_view"
+                android:name=".UI.Hossam.MealRateListActivity"
                 android:label="@string/title_activity_meal__rate__list_view"
                 android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.Sherif.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SignUpActivity"/>
-        <activity android:name=".ui.FilterationActivity"/>
-        <activity android:name=".ui.AdminFunctionalitiesActivity"/>
-        <activity android:name=".ui.AddRestaurantActivity"/>
-        <activity android:name=".ui.AddAdminActivity"/>
-        <activity android:name=".ui.ManagerActivity"/>
-        <activity android:name=".ui.MenuActivity"/>
-        <activity android:name=".ui.MenuListViewItemActivity"/>
+        <activity android:name=".UI.Sherif.SignUpActivity"/>
+        <activity android:name=".UI.Sherif.FilterationActivity"/>
+        <activity android:name=".UI.Sherif.AdminFunctionalitiesActivity"/>
+        <activity android:name=".UI.Sherif.AddRestaurantActivity"/>
+        <activity android:name=".UI.Sherif.AddAdminActivity"/>
+        <activity android:name=".UI.Sherif.ManagerActivity"/>
+        <activity android:name=".UI.Sherif.MenuActivity"/>
+        <activity android:name=".UI.Sherif.MenuListViewItemActivity"/>
     </application>
 
 </manifest>

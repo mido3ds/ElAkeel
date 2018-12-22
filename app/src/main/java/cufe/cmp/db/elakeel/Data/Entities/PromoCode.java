@@ -21,6 +21,17 @@ public class PromoCode implements Entity {
         customer = new Customer(cursor);
     }
 
+    /**
+     * generates randomized promo codes
+     *
+     * @param n num of promo codes to generate
+     * @return promo codes
+     */
+    static PromoCode[] generatePromoCodes(int n) {
+        //TODO
+        return null;
+    }
+
     public long getId() {
         return id;
     }
@@ -67,15 +78,5 @@ public class PromoCode implements Entity {
         SQLiteStatement statement = db.compileStatement(DbConstants.PromoCodes.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;
-    }
-
-    /**
-     * generates randomized promo codes
-     * @param n num of promo codes to generate
-     * @return promo codes
-     */
-    static PromoCode[] generatePromoCodes(int n) {
-        //TODO
-        return null;
     }
 }

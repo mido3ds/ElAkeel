@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 public interface Entity {
     /**
      * insert in db with stored id
+     *
      * @param db
      * @return true if successful
      */
@@ -12,13 +13,15 @@ public interface Entity {
 
     /**
      * update ALL data of this entry in given database
-     * @return true if successful
+     *
      * @param db
+     * @return true if successful
      */
     boolean update(SQLiteDatabase db);
 
     /**
      * delete object in db
+     *
      * @param db
      * @return true if successful
      */

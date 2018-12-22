@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">ElAkeel</string>
+    <string name="title_activity_after_login">AfterLogin</string>
+    <string name="title_activity_prev_orders_list__view">PrevOrdersList_View</string>
+    <string name="title_activity_restuarant__chefs">Restuarant_Chefs</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_chefs_list_view">chefs_list_view</string>
+    <string name="title_activity_restuarant__menu">Restuarant_Menu</string>
+    <string name="title_activity_menu__list__view">Menu_List_View</string>
+    <string name="title_activity_meal">Meal</string>
+    <string name="title_activity_review_acivity">ReviewAcivity</string>
+    <string name="title_activity_meal__rate__list_view">Meal_Rate_List_view</string>
 </resources>

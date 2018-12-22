@@ -12,11 +12,6 @@ public class DbConstants {
                 SERVICE_TYPE = "ServiceType",
                 IMAGE = "Image",
                 PHONE = "Phone";
-
-        public enum ServiceType {
-            Unspecified
-        }//TODO
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -42,6 +37,9 @@ public class DbConstants {
                         "UPDATE %s SET %s=?, %s=?, %s=?, %s=? WHERE %s=?;",
                         TABLE_NAME, NAME, SERVICE_TYPE, IMAGE, PHONE, REVIEWABLE_ID
                 );
+        public enum ServiceType {
+            Unspecified
+        }//TODO
     }
 
     public static final class Chefs {
@@ -91,10 +89,10 @@ public class DbConstants {
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
-                            "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                            "%s TEXT NOT NULL UNIQUE, " +
-                            "%s BLOB, " +
-                            "%s TEXT NOT NULL);",
+                                "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "%s TEXT NOT NULL UNIQUE, " +
+                                "%s BLOB, " +
+                                "%s TEXT NOT NULL);",
                         TABLE_NAME,
                         REVIEWABLE_ID, Reviewables.TABLE_NAME, Reviewables.ID,
                         NAME,
@@ -126,11 +124,6 @@ public class DbConstants {
                 CARD_NO = "CardNo",
                 CARD_SEC_NO = "CardSecNo",
                 CARD_EXPIRE_DATA = "CardExpireData";
-
-        public enum PaymentMethod {
-            CreditCard, Cash
-        }
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -174,6 +167,9 @@ public class DbConstants {
                         PAYMENT_METHOD, CARD_NO,
                         CARD_SEC_NO, CARD_EXPIRE_DATA, USER_ID
                 );
+        public enum PaymentMethod {
+            CreditCard, Cash
+        }
     }
 
     public static final class Reviews {
@@ -186,21 +182,16 @@ public class DbConstants {
                 STATUS = "Status",
                 CUSTOMER_ID = "CustomerID",
                 REVIEWABLE_ID = "ReviewableID";
-
-        public enum Status {
-            Posted, Seen, Solved
-        }
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s(" +
-                            "%s INT PRIMARY KEY, " +
-                            "%s INT DEFAULT 1, " +
-                            "%s TEXT, " +
-                            "%s INT NOT NULL, " +
-                            "%s INT DEFAULT %d, " +
-                            "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
-                            "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT PRIMARY KEY, " +
+                                "%s INT DEFAULT 1, " +
+                                "%s TEXT, " +
+                                "%s INT NOT NULL, " +
+                                "%s INT DEFAULT %d, " +
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
                         TABLE_NAME,
                         ID,
                         STARS,
@@ -227,16 +218,16 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+        public enum Status {
+            Posted, Seen, Solved
+        }
     }
 
-    public static final class Admins  {
+    public static final class Admins {
         public static final String TABLE_NAME = "Admins";
         public static final String
                 USER_ID = "UserID",
                 RANK = "Rank";
-
-        public enum Rank {}//TODO
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -256,9 +247,10 @@ public class DbConstants {
                         "UPDATE %s SET %s=? WHERE %s=?;",
                         TABLE_NAME, RANK, USER_ID
                 );
+        public enum Rank {}//TODO
     }
 
-    public static final class RestaurantManagers  {
+    public static final class RestaurantManagers {
         public static final String TABLE_NAME = "RestaurantManagers";
         public static final String
                 USER_ID = "UserID",
@@ -291,11 +283,6 @@ public class DbConstants {
                 PASSWORD = "Password",
                 IMAGE = "Image",
                 TYPE = "Type";
-
-        public enum Type {
-            Customer, RestaurantManager, Admin
-        }
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -330,18 +317,16 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+        public enum Type {
+            Customer, RestaurantManager, Admin
+        }
     }
 
-    public static final class Reviewables  {
+    public static final class Reviewables {
         public static final String TABLE_NAME = "Reviewables";
         public static final String
                 ID = "ID",
                 TYPE = "Type";
-
-        public enum Type {
-            Restaurant, Chef, Meal, DeliveryMan
-        }
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -366,9 +351,12 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+        public enum Type {
+            Restaurant, Chef, Meal, DeliveryMan
+        }
     }
 
-    public static final class Branches  {
+    public static final class Branches {
         public static final String TABLE_NAME = "Branches";
         public static final String
                 ID = "ID",
@@ -438,10 +426,7 @@ public class DbConstants {
                 TYPE = "Type",
                 RESTR_ID = "RestrID",
 
-                ID = REVIEWABLE_ID;
-
-        public enum Type {}//TODO
-
+        ID = REVIEWABLE_ID;
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -471,6 +456,7 @@ public class DbConstants {
                         TABLE_NAME, NAME, IMAGE,
                         PRICE, TYPE, RESTR_ID, REVIEWABLE_ID
                 );
+        public enum Type {}//TODO
     }
 
     public static final class Orders {
@@ -479,9 +465,6 @@ public class DbConstants {
                 ID = "ID",
                 STATUS = "Status",
                 TIME = "Time";
-
-        public enum Status {}//TODO
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -508,6 +491,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+        public enum Status {}//TODO
     }
 
     public static final class Bills {
@@ -518,11 +502,6 @@ public class DbConstants {
                 AMOUNT = "Amount",
                 DISCOUNT = "Discount",
                 CUSTOMER_ID = "CustomerID";
-
-        public enum Status {
-            Unpaid, paid
-        }
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -555,6 +534,9 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+        public enum Status {
+            Unpaid, paid
+        }
     }
 
     public static final class Deliveries {
@@ -566,9 +548,6 @@ public class DbConstants {
                 ARRIVAL_TIME = "ArrivalTime",
                 DELIVERY_MAN_ID = "DeliveryManID",
                 BILL_ID = "BillID";
-
-        public enum Status {}//TODO
-
         public static final String SQL_CREATE_TABLE =
                 String.format(
                         "CREATE TABLE %s" +
@@ -603,6 +582,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+        public enum Status {}//TODO
     }
 
     public static final class BillContainsOrders {

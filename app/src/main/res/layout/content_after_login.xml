@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:divider="#f00"
+            android:dividerHeight="1dp"
+            android:id="@+id/Prev_orders_List_view"></ListView>
+
+    <Button
+            android:id="@+id/MakeNewOrderButton"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#03B424"
+            android:text="Make new order"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"></Button>
+</LinearLayout>
+

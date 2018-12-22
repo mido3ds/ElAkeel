@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/MealName"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              app:layout_behavior="@string/appbar_scrolling_view_behavior"
+              tools:context=".Meal"
+              tools:showIn="@layout/activity_meal">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="Meal Name"
+            android:textColor="#b61616"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"/>
+
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"></ListView>
+
+    <Button
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#03B424"
+            android:text="Back to Menu"
+            android:textStyle="bold"/>
+</LinearLayout>

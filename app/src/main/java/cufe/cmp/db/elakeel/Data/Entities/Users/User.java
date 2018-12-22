@@ -93,7 +93,7 @@ public class User implements Entity {
     public boolean insert(SQLiteDatabase db) {
         SQLiteStatement statement = db.compileStatement(Users.SQL_INSERT);
         bindData(statement);
-        id =  statement.executeInsert();
+        id = statement.executeInsert();
         return id != -1;
     }
 

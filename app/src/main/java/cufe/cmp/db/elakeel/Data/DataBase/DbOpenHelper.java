@@ -36,7 +36,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
                 MealsContainIngredients.SQL_CREATE_TABLE
         };
 
-        for (String s:creates)
+        for (String s : creates)
             db.execSQL(s);
     }
 
@@ -65,7 +65,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
                 MealsContainIngredients.SQL_CREATE_TABLE
         };
 
-        for (String s:drops)
+        for (String s : drops)
             db.execSQL("DROP TABLE IF EXISTS " + s + ";");
 
         onCreate(db);

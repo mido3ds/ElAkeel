@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">El-Akeel</string>
     <string name="title_activity_after_login">AfterLogin</string>
     <string name="title_activity_prev_orders_list__view">PrevOrdersList_View</string>
     <string name="title_activity_restuarant__chefs">Restuarant_Chefs</string>

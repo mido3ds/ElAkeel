@@ -1,4 +1,4 @@
-package cufe.cmp.db.elakeel.UI;
+package cufe.cmp.db.elakeel.UI.hossam;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +8,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import cufe.cmp.db.elakeel.R;
 
-public class Meal_Rate_List_view extends AppCompatActivity {
+public class Menu_List_View extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meal__rate__list_view);
+        setContentView(R.layout.activity_menu__list__view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

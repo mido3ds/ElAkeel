@@ -1,4 +1,4 @@
-package cufe.cmp.db.elakeel.UI;
+package cufe.cmp.db.elakeel.UI.hossam;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +8,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import cufe.cmp.db.elakeel.R;
 
-public class PrevOrdersList_View extends AppCompatActivity {
+public class Meal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prev_orders_list__view);
+        setContentView(R.layout.activity_meal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

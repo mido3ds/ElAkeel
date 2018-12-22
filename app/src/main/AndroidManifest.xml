@@ -4,21 +4,21 @@
 
     <application android:theme="@style/AppTheme">
         <activity
-            android:name="UI.AfterLogin"
+            android:name=".UI.hossam.AfterLogin"
             android:label="@string/title_activity_after_login"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-            android:name="UI.PrevOrdersList_View"
+            android:name=".UI.hossam.PrevOrdersList_View"
             android:label="@string/title_activity_prev_orders_list__view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.Restuarant_Chefs"
+            android:name=".UI.hossam.Restuarant_Chefs"
             android:label="@string/title_activity_restuarant__chefs"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.Login"
+            android:name=".UI.hossam.Login"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
@@ -28,29 +28,39 @@
         </activity>
 
         <activity
-            android:name="UI.chefs_list_view"
+            android:name=".UI.hossam.chefs_list_view"
             android:label="@string/title_activity_chefs_list_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.Restuarant_Menu"
+            android:name=".UI.hossam.Restuarant_Menu"
             android:label="@string/title_activity_restuarant__menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.Menu_List_View"
+            android:name=".UI.hossam.Menu_List_View"
             android:label="@string/title_activity_menu__list__view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.Meal"
+            android:name=".UI.hossam.Meal"
             android:label="@string/title_activity_meal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.ReviewAcivity"
+            android:name=".UI.hossam.ReviewAcivity"
             android:label="@string/title_activity_review_acivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="UI.Meal_Rate_List_view"
+            android:name=".UI.hossam.Meal_Rate_List_view"
             android:label="@string/title_activity_meal__rate__list_view"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name="UI.sherif.MainActivity"/>
+        <activity android:name="UI.sherif.SignUpActivity" />
+        <activity android:name="UI.sherif.FilterationActivity" />
+        <activity android:name="UI.sherif.AdminFunctionalitiesActivity" />
+        <activity android:name="UI.sherif.AddRestaurantActivity" />
+        <activity android:name="UI.sherif.AddAdminActivity" />
+        <activity android:name="UI.sherif.ManagerActivity" />
+        <activity android:name="UI.sherif.MenuActivity" />
+        <activity android:name="UI.sherif.MenuListViewItemActivity"/>
     </application>
 
 </manifest>

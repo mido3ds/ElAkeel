@@ -8,7 +8,7 @@
               android:orientation="horizontal"
               android:id="@+id/MealElementLayout"
               app:layout_behavior="@string/appbar_scrolling_view_behavior"
-              tools:context="UI.Meal_Rate_List_view"
+              tools:context=".UI.hossam.Meal_Rate_List_view"
               tools:showIn="@layout/activity_meal__rate__list_view">
 
     <TextView

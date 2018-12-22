@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="UI.sherif.MenuListViewItemActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/internal_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/ItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Item Name" />
+
+        <Spinner
+            android:id="@+id/ItemType"
+            android:layout_width="231dp"
+            android:layout_height="0dp"
+            android:layout_above="@+id/ItemPrice"
+            android:layout_alignStart="@+id/ItemName"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="53dp"
+            android:layout_marginBottom="-55dp" />
+
+        <EditText
+            android:id="@+id/ItemPrice"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ItemName"
+            android:layout_alignEnd="@+id/ItemTrend"
+            android:layout_marginTop="-46dp"
+            android:layout_marginEnd="88dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="80LE" />
+
+        <EditText
+            android:id="@+id/ItemTrend"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/ItemName"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="59dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="2 in Trend" />
+
+        <EditText
+            android:id="@+id/ItemIngrediants"
+            android:layout_width="376dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="105dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Grilled Meat, Hot Sos, Green Salad, Bread" />
+
+        <Button
+            android:id="@+id/Delete"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:text="Delete" />
+    </RelativeLayout>
+</LinearLayout>

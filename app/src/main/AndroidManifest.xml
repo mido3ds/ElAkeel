@@ -4,63 +4,64 @@
 
     <application android:theme="@style/AppTheme">
         <activity
-                android:name=".UI.hossam.AfterLogin"
+                android:name=".ui.AfterLoginActivity"
                 android:label="@string/title_activity_after_login"
                 android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-                android:name=".UI.hossam.PrevOrdersList_View"
+                android:name=".ui.PrevOrdersList_View"
                 android:label="@string/title_activity_prev_orders_list__view"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".UI.hossam.Restuarant_Chefs"
+                android:name=".ui.Restuarant_Chefs"
                 android:label="@string/title_activity_restuarant__chefs"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".UI.hossam.Login"
+                android:name=".ui.LoginActivity"
                 android:label="@string/title_activity_login"
                 android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+                android:name=".ui.chefs_list_view"
+                android:label="@string/title_activity_chefs_list_view"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.Restuarant_Menu"
+                android:label="@string/title_activity_restuarant__menu"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.Menu_List_View"
+                android:label="@string/title_activity_menu__list__view"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.Meal"
+                android:label="@string/title_activity_meal"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.ReviewAcivity"
+                android:label="@string/title_activity_review_acivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.Meal_Rate_List_view"
+                android:label="@string/title_activity_meal__rate__list_view"
+                android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity
-                android:name=".UI.hossam.chefs_list_view"
-                android:label="@string/title_activity_chefs_list_view"
-                android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-                android:name=".UI.hossam.Restuarant_Menu"
-                android:label="@string/title_activity_restuarant__menu"
-                android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-                android:name=".UI.hossam.Menu_List_View"
-                android:label="@string/title_activity_menu__list__view"
-                android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-                android:name=".UI.hossam.Meal"
-                android:label="@string/title_activity_meal"
-                android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-                android:name=".UI.hossam.ReviewAcivity"
-                android:label="@string/title_activity_review_acivity"
-                android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-                android:name=".UI.hossam.Meal_Rate_List_view"
-                android:label="@string/title_activity_meal__rate__list_view"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity android:name="UI.sherif.MainActivity"/>
-        <activity android:name="UI.sherif.SignUpActivity"/>
-        <activity android:name="UI.sherif.FilterationActivity"/>
-        <activity android:name="UI.sherif.AdminFunctionalitiesActivity"/>
-        <activity android:name="UI.sherif.AddRestaurantActivity"/>
-        <activity android:name="UI.sherif.AddAdminActivity"/>
-        <activity android:name="UI.sherif.ManagerActivity"/>
-        <activity android:name="UI.sherif.MenuActivity"/>
-        <activity android:name="UI.sherif.MenuListViewItemActivity"/>
+        <activity android:name=".ui.SignUpActivity"/>
+        <activity android:name=".ui.FilterationActivity"/>
+        <activity android:name=".ui.AdminFunctionalitiesActivity"/>
+        <activity android:name=".ui.AddRestaurantActivity"/>
+        <activity android:name=".ui.AddAdminActivity"/>
+        <activity android:name=".ui.ManagerActivity"/>
+        <activity android:name=".ui.MenuActivity"/>
+        <activity android:name=".ui.MenuListViewItemActivity"/>
     </application>
 
 </manifest>

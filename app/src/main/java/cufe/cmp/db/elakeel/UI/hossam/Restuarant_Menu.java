@@ -22,13 +22,13 @@ public class Restuarant_Menu extends AppCompatActivity {
         setContentView(R.layout.activity_restuarant__menu);
 
         ArrayList<MenuElement> MenuElements = new ArrayList<MenuElement>();
-        final ListView List = (ListView) findViewById(R.id.Menu_List_view);
+        final ListView List = findViewById(R.id.Menu_List_view);
 
         final MenuAdpater MenuElementsItem = new MenuAdpater(this, MenuElements);
 
         List.setAdapter(MenuElementsItem);
 
-        Button Confirmbtn = (Button) findViewById(R.id.ConfirmOrder);
+        Button Confirmbtn = findViewById(R.id.ConfirmOrder);
         Confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

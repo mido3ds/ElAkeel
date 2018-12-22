@@ -41,19 +41,19 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        FirstName = (EditText) findViewById(R.id.FirstName);
-        LastName = (EditText) findViewById(R.id.LastName);
-        ProfilePic = (Button) findViewById(R.id.Image);
-        PhoneNo = (EditText) findViewById(R.id.PhoneNo);
-        Region = (Spinner) findViewById(R.id.Region);
-        StreetNo = (EditText) findViewById(R.id.StreetNo);
-        BuildingNo = (EditText) findViewById(R.id.BuildingNo);
-        PaymentType = (Spinner) findViewById(R.id.PaymentType);
-        CardNo = (EditText) findViewById(R.id.CardNo);
-        SecurityCode = (EditText) findViewById(R.id.SecurityCode);
-        ExpireDate = (EditText) findViewById(R.id.ExpireDate);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        FirstName = findViewById(R.id.FirstName);
+        LastName = findViewById(R.id.LastName);
+        ProfilePic = findViewById(R.id.Image);
+        PhoneNo = findViewById(R.id.PhoneNo);
+        Region = findViewById(R.id.Region);
+        StreetNo = findViewById(R.id.StreetNo);
+        BuildingNo = findViewById(R.id.BuildingNo);
+        PaymentType = findViewById(R.id.PaymentType);
+        CardNo = findViewById(R.id.CardNo);
+        SecurityCode = findViewById(R.id.SecurityCode);
+        ExpireDate = findViewById(R.id.ExpireDate);
         Email = email.getText().toString();
         Password = password.getText().toString();
         Fname = FirstName.getText().toString();
@@ -83,6 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
         intent.putExtra("return-data", true);
         startActivityForResult(intent, 1);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {

@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="UI.sherif.ManagerActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="UI.sherif.ManagerActivity">
 
     <Button
-        android:id="@+id/UpdateMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Update Menu"
-        android:textAllCaps="false"/>
+            android:id="@+id/UpdateMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Menu"
+            android:textAllCaps="false"/>
 
     <Button
-        android:id="@+id/UpdateRestaurantInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Update Restaurant Info."
-        android:textAllCaps="false"/>
+            android:id="@+id/UpdateRestaurantInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Restaurant Info."
+            android:textAllCaps="false"/>
 
     <Button
-        android:id="@+id/GetOrders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get Orders"
-        android:textAllCaps="false"/>
+            android:id="@+id/GetOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Orders"
+            android:textAllCaps="false"/>
 
     <Button
-        android:id="@+id/ViewStatistics"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Statistics"
-        android:textAllCaps="false"/>
+            android:id="@+id/ViewStatistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Statistics"
+            android:textAllCaps="false"/>
 
     <Button
-        android:id="@+id/ViewRates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Rates"
-        android:textAllCaps="false"/>
+            android:id="@+id/ViewRates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Rates"
+            android:textAllCaps="false"/>
 </LinearLayout>

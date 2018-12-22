@@ -37,23 +37,23 @@ public class MenuAdpater extends ArrayAdapter<MenuElement> {
         MenuElement currentMenuItem = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView MenuItemNameTextView = (TextView) listItemView.findViewById(R.id.MealNameINOrderList);
+        TextView MenuItemNameTextView = listItemView.findViewById(R.id.MealNameINOrderList);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         MenuItemNameTextView.setText(currentMenuItem.getElemwntName());
 
-        TextView MenuItemPriceTextView = (TextView) listItemView.findViewById(R.id.Meal_Price);
+        TextView MenuItemPriceTextView = listItemView.findViewById(R.id.Meal_Price);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         MenuItemPriceTextView.setText(currentMenuItem.getELementprice());
 
 
-        ImageView MealPicImageView = (ImageView) listItemView.findViewById(R.id.Image);
+        ImageView MealPicImageView = listItemView.findViewById(R.id.Image);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         MealPicImageView.setImageResource(currentMenuItem.getPic());
 
-        Button addElementbtn = (Button) listItemView.findViewById(R.id.addMealToOrder);
+        Button addElementbtn = listItemView.findViewById(R.id.addMealToOrder);
         addElementbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

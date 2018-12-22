@@ -11,24 +11,25 @@ public class AdminFunctionalitiesActivity extends AppCompatActivity {
     Button AddRestaurant;
     Button AddAdmin;
     Button ViewStatistics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_functionalities);
-        AddRestaurant = (Button) findViewById(R.id.AddRestaurant);
-        AddAdmin = (Button) findViewById(R.id.AddAdmin);
-        ViewStatistics = (Button) findViewById(R.id.ViewStatistics);
+        AddRestaurant = findViewById(R.id.AddRestaurant);
+        AddAdmin = findViewById(R.id.AddAdmin);
+        ViewStatistics = findViewById(R.id.ViewStatistics);
         AddRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent I = new Intent(AdminFunctionalitiesActivity.this,AddRestaurantActivity.class);
+                Intent I = new Intent(AdminFunctionalitiesActivity.this, AddRestaurantActivity.class);
                 startActivity(I);
             }
         });
         AddAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent I = new Intent(AdminFunctionalitiesActivity.this,AddAdminActivity.class);
+                Intent I = new Intent(AdminFunctionalitiesActivity.this, AddAdminActivity.class);
                 startActivity(I);
             }
         });

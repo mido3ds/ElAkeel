@@ -37,6 +37,7 @@ public class DbConstants {
                         "UPDATE %s SET %s=?, %s=?, %s=?, %s=? WHERE %s=?;",
                         TABLE_NAME, NAME, SERVICE_TYPE, IMAGE, PHONE, REVIEWABLE_ID
                 );
+
         public enum ServiceType {
             Unspecified
         }//TODO
@@ -167,6 +168,7 @@ public class DbConstants {
                         PAYMENT_METHOD, CARD_NO,
                         CARD_SEC_NO, CARD_EXPIRE_DATA, USER_ID
                 );
+
         public enum PaymentMethod {
             CreditCard, Cash
         }
@@ -218,6 +220,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+
         public enum Status {
             Posted, Seen, Solved
         }
@@ -247,6 +250,7 @@ public class DbConstants {
                         "UPDATE %s SET %s=? WHERE %s=?;",
                         TABLE_NAME, RANK, USER_ID
                 );
+
         public enum Rank {}//TODO
     }
 
@@ -317,6 +321,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+
         public enum Type {
             Customer, RestaurantManager, Admin
         }
@@ -351,6 +356,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+
         public enum Type {
             Restaurant, Chef, Meal, DeliveryMan
         }
@@ -456,6 +462,7 @@ public class DbConstants {
                         TABLE_NAME, NAME, IMAGE,
                         PRICE, TYPE, RESTR_ID, REVIEWABLE_ID
                 );
+
         public enum Type {}//TODO
     }
 
@@ -491,6 +498,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+
         public enum Status {}//TODO
     }
 
@@ -534,6 +542,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+
         public enum Status {
             Unpaid, paid
         }
@@ -582,6 +591,7 @@ public class DbConstants {
                         "DELETE FROM %s WHERE %s=?;",
                         TABLE_NAME, ID
                 );
+
         public enum Status {}//TODO
     }
 

@@ -18,14 +18,15 @@ public class MenuAdapter extends ArrayAdapter<MenuItem> {
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
-        super(context,0);
+        super(context, 0);
 
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
-        if(listItemView == null)//lw mfesh view n3rf n reuse
+        if (listItemView == null)//lw mfesh view n3rf n reuse
         {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.activity_menu_list_view_item, parent, false);
@@ -35,20 +36,20 @@ public class MenuAdapter extends ArrayAdapter<MenuItem> {
         // Get the {@link AndroidFlavor} object located at this position in the list
         MenuItem currentMenuItem = getItem(position);
 
-        EditText ItemName = (EditText) listItemView.findViewById(R.id.ItemName);
+        EditText ItemName = listItemView.findViewById(R.id.ItemName);
         ItemName.setText(currentMenuItem.getItemName());
 
-        EditText ItemPrice = (EditText) listItemView.findViewById(R.id.ItemPrice);
+        EditText ItemPrice = listItemView.findViewById(R.id.ItemPrice);
         ItemPrice.setText(currentMenuItem.getPrice());
 
-        EditText ItemTrend = (EditText) listItemView.findViewById(R.id.ItemTrend);
-        ItemName.setText(currentMenuItem.getTrend()+" in Trend");
+        EditText ItemTrend = listItemView.findViewById(R.id.ItemTrend);
+        ItemName.setText(currentMenuItem.getTrend() + " in Trend");
 
 
-        EditText Ingredients = (EditText) listItemView.findViewById(R.id.ItemIngrediants);
+        EditText Ingredients = listItemView.findViewById(R.id.ItemIngrediants);
         Ingredients.setText(currentMenuItem.getIngredients());
 
-        Button Delete = (Button) listItemView.findViewById(R.id.Delete);
+        Button Delete = listItemView.findViewById(R.id.Delete);
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView

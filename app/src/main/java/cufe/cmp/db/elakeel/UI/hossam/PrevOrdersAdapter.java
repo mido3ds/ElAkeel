@@ -36,18 +36,18 @@ public class PrevOrdersAdapter extends ArrayAdapter<Prevorder> {
         Prevorder currentPreOrder = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView RestautantNameTextView = (TextView) listItemView.findViewById(R.id.Restuarant_Name);
+        TextView RestautantNameTextView = listItemView.findViewById(R.id.Restuarant_Name);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         RestautantNameTextView.setText(currentPreOrder.getRestaurantName());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView orderDAteTextView = (TextView) listItemView.findViewById(R.id.OrderDate);
+        TextView orderDAteTextView = listItemView.findViewById(R.id.OrderDate);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         orderDAteTextView.setText(currentPreOrder.getOrderDate());
 
-        Button Revieworderbtn = (Button) listItemView.findViewById(R.id.ReviewOrder);
+        Button Revieworderbtn = listItemView.findViewById(R.id.ReviewOrder);
         Revieworderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

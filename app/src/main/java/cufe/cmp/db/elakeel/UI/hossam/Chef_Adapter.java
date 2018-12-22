@@ -36,18 +36,18 @@ public class Chef_Adapter extends ArrayAdapter<Chef> {
         Chef currentChef = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView ChefnationalityTextView = (TextView) listItemView.findViewById(R.id.chef_nationality);
+        TextView ChefnationalityTextView = listItemView.findViewById(R.id.chef_nationality);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         ChefnationalityTextView.setText(currentChef.getChef_nationality());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView ChefNameTextView = (TextView) listItemView.findViewById(R.id.Chef_Name);
+        TextView ChefNameTextView = listItemView.findViewById(R.id.Chef_Name);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         ChefNameTextView.setText(currentChef.getChef_Name());
 
-        Button SelectChefbtn = (Button) listItemView.findViewById(R.id.ChefSelect);
+        Button SelectChefbtn = listItemView.findViewById(R.id.ChefSelect);
 
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)

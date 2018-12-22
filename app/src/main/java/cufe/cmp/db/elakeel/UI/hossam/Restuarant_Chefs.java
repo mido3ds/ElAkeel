@@ -27,7 +27,7 @@ public class Restuarant_Chefs extends AppCompatActivity {
         setContentView(R.layout.activity_restuarant__chefs);
 
         ArrayList<Chef> Chefs = new ArrayList<Chef>();
-        final ListView List = (ListView) findViewById(R.id.RestaurantChef_List_view);
+        final ListView List = findViewById(R.id.RestaurantChef_List_view);
         final Chef_Adapter ChefsItem = new Chef_Adapter(this, Chefs);
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -40,7 +40,7 @@ public class Restuarant_Chefs extends AppCompatActivity {
 
         List.setAdapter(ChefsItem);
 
-        Button Confirmbtn = (Button) findViewById(R.id.ConfirmChef);
+        Button Confirmbtn = findViewById(R.id.ConfirmChef);
         Confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

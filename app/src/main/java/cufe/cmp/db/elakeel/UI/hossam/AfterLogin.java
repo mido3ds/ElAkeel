@@ -19,7 +19,7 @@ public class AfterLogin extends AppCompatActivity {
         setContentView(R.layout.activity_after_login);
 
         ArrayList<Prevorder> PrevOrders = new ArrayList<Prevorder>();
-        final ListView List = (ListView) findViewById(R.id.Prev_orders_List_view);
+        final ListView List = findViewById(R.id.Prev_orders_List_view);
         final PrevOrdersAdapter prevOrdersItem = new PrevOrdersAdapter(this, PrevOrders);
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -34,7 +34,7 @@ public class AfterLogin extends AppCompatActivity {
         List.setAdapter(prevOrdersItem);
 
 
-        Button makeneworder = (Button) findViewById(R.id.MakeNewOrderButton);
+        Button makeneworder = findViewById(R.id.MakeNewOrderButton);
         makeneworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

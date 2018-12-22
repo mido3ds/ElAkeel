@@ -36,13 +36,13 @@ public class OrderItemListAdapter extends ArrayAdapter<OrderListItem> {
         OrderListItem currentReviewedOrderItem = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView MealNameTextView = (TextView) listItemView.findViewById(R.id.ReviewedMealName);
+        TextView MealNameTextView = listItemView.findViewById(R.id.ReviewedMealName);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         MealNameTextView.setText(currentReviewedOrderItem.getMealName());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
-        RatingBar RateRatingBar = (RatingBar) listItemView.findViewById(R.id.MealRate);
+        RatingBar RateRatingBar = listItemView.findViewById(R.id.MealRate);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         currentReviewedOrderItem.setRate((int) RateRatingBar.getRating());

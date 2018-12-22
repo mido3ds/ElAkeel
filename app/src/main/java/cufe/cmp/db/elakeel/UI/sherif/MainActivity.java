@@ -10,16 +10,17 @@ import cufe.cmp.db.elakeel.R;
 public class MainActivity extends AppCompatActivity {
     Button SignUP;
     Button LogIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LogIn = (Button)findViewById(R.id.MainLogIn);
-        SignUP = (Button)findViewById(R.id.MainSignUp);
+        LogIn = findViewById(R.id.MainLogIn);
+        SignUP = findViewById(R.id.MainSignUp);
         SignUP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent I = new Intent(MainActivity.this,SignUpActivity.class);
+                Intent I = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(I);
             }
         });

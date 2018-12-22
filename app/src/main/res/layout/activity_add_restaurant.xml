@@ -1,71 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="UI.sherif.AddRestaurantActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="UI.sherif.AddRestaurantActivity">
 
     <EditText
-        android:id="@+id/Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName" />
+            android:id="@+id/Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"/>
 
     <TextView
-        android:id="@+id/ServiceTypeLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Service Type" />
+            android:id="@+id/ServiceTypeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service Type"/>
 
     <Spinner
-        android:id="@+id/Region"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            android:id="@+id/Region"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/RestaurantImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Upload Restaurant Image"
-        android:textAllCaps="false" />
+            android:id="@+id/RestaurantImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Restaurant Image"
+            android:textAllCaps="false"/>
 
     <EditText
-        android:id="@+id/RestaurantPhoneNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Phone no."
-        android:inputType="phone" />
+            android:id="@+id/RestaurantPhoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Phone no."
+            android:inputType="phone"/>
 
     <TextView
-        android:id="@+id/RestaurantAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address" />
+            android:id="@+id/RestaurantAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address"/>
 
     <Spinner
-        android:id="@+id/RestaurantRegion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            android:id="@+id/RestaurantRegion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/RestaurantStreetNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Street no."
-        android:inputType="number" />
+            android:id="@+id/RestaurantStreetNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Street no."
+            android:inputType="number"/>
 
     <EditText
-        android:id="@+id/RestaurnatBuildingNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Building no."
-        android:inputType="number" />
+            android:id="@+id/RestaurnatBuildingNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Building no."
+            android:inputType="number"/>
 
 </LinearLayout>

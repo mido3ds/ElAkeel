@@ -26,17 +26,17 @@ public class ReviewAcivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_acivity);
 
-        TextView RestaurantNameTextView = (TextView) findViewById(R.id.Restuarant_Name);
+        TextView RestaurantNameTextView = findViewById(R.id.Restuarant_Name);
         RestaurantNameTextView.setText(RestaurantName);
 
-        TextView ChefNameTextView = (TextView) findViewById(R.id.Chef_Name);
+        TextView ChefNameTextView = findViewById(R.id.Chef_Name);
         ChefNameTextView.setText(ChefName);
 
-        TextView DeliveryManNameTextView = (TextView) findViewById(R.id.Delivery_Man_Name);
+        TextView DeliveryManNameTextView = findViewById(R.id.Delivery_Man_Name);
         DeliveryManNameTextView.setText(DeliveryManName);
 
         ArrayList<OrderListItem> OrderListItems = new ArrayList<OrderListItem>();
-        final ListView List = (ListView) findViewById(R.id.Order_Elements);
+        final ListView List = findViewById(R.id.Order_Elements);
         final OrderItemListAdapter OrderListItemsItem = new OrderItemListAdapter(this, OrderListItems);
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -48,7 +48,7 @@ public class ReviewAcivity extends AppCompatActivity {
 
         List.setAdapter(OrderListItemsItem);
 
-        Button BackToOrdersbtn = (Button) findViewById(R.id.Back_TO_orders_List);
+        Button BackToOrdersbtn = findViewById(R.id.Back_TO_orders_List);
         BackToOrdersbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

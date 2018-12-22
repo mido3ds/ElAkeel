@@ -11,8 +11,8 @@ import cufe.cmp.db.elakeel.R;
 
 import java.util.ArrayList;
 
-public class Chef_Adapter extends ArrayAdapter<Chef> {
-    public Chef_Adapter(Activity context, ArrayList<Chef> chefs) {
+public class ChefAdapter extends ArrayAdapter<Chef> {
+    public ChefAdapter(Activity context, ArrayList<Chef> chefs) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not

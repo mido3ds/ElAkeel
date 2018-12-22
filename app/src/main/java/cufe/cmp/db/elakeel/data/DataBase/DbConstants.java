@@ -1,4 +1,4 @@
-package cufe.cmp.db.elakeel.data.database;
+package cufe.cmp.db.elakeel.Data.Database;
 
 public class DbConstants {
     public static final String DB_NAME = "ElAkeel.db";

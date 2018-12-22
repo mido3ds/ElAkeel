@@ -1,10 +1,10 @@
-package cufe.cmp.db.elakeel.data.database;
+package cufe.cmp.db.elakeel.Data.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static cufe.cmp.db.elakeel.data.database.DbConstants.*;
+import static cufe.cmp.db.elakeel.Data.Database.DbConstants.*;
 
 public class DbOpenHelper extends SQLiteOpenHelper {
     public DbOpenHelper(Context context) {

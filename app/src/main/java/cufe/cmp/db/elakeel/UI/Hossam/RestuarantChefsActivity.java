@@ -28,7 +28,7 @@ public class RestuarantChefsActivity extends AppCompatActivity {
 
         ArrayList<Chef> Chefs = new ArrayList<Chef>();
         final ListView List = findViewById(R.id.RestaurantChef_List_view);
-        final Chef_Adapter ChefsItem = new Chef_Adapter(this, Chefs);
+        final ChefAdapter ChefsItem = new ChefAdapter(this, Chefs);
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long ID) {

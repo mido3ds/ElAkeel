@@ -10,13 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import cufe.cmp.db.elakeel.Data.Entities.Order;
+import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
 import cufe.cmp.db.elakeel.R;
 
 import java.util.ArrayList;
 
 public class PrevOrdersAdapter extends ArrayAdapter<Order> {
-    public PrevOrdersAdapter(Activity context, ArrayList<Order> orders) {
+    private final Customer customer;
+
+    public PrevOrdersAdapter(Activity context, ArrayList<Order> orders, Customer customer) {
         super(context, 0, orders);
+        this.customer = customer;
     }
 
     @NonNull
@@ -38,8 +42,9 @@ public class PrevOrdersAdapter extends ArrayAdapter<Order> {
 
         Button revieworderbtn = listItemView.findViewById(R.id.ReviewOrder);
         revieworderbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), ReviewAcivity.class);
-            intent.putExtra(Order.class.getName(), order);
+            Intent intent = new Intent(getContext(), ReviewActivity.class);
+            intent.putExtra(order.getClass().getName(), order);
+            intent.putExtra(customer.getClass().getName(), customer);
             getContext().startActivity(intent);
         });
 

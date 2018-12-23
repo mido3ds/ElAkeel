@@ -7,7 +7,7 @@ import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Bills;
 
-public class Bill implements Entity {
+public class Bill extends Entity {
     private long id;
     private Bills.Status status;
     private double amount;
@@ -65,7 +65,7 @@ public class Bill implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Bills.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -80,7 +80,7 @@ public class Bill implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Bills.SQL_UPDATE_ALL);
         bindData(statement);
         statement.bindLong(4, id);
@@ -88,7 +88,7 @@ public class Bill implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Bills.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

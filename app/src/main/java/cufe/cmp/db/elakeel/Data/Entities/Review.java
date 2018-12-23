@@ -10,7 +10,7 @@ import java.util.Date;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Reviews;
 
-public class Review implements Entity {
+public class Review extends Entity {
     private long id;
     private int stars;
     private String comment;
@@ -36,6 +36,10 @@ public class Review implements Entity {
         status = Reviews.Status.values()[cursor.getInt(cursor.getColumnIndexOrThrow(Reviews.STATUS))];
         customer = new Customer(cursor);
         reviewable = new Reviewable(cursor);
+    }
+
+    public static Review from(Customer customer, Reviewable reviewable) {
+        return null;// TODO: 23/12/2018
     }
 
     public long getId() {
@@ -91,7 +95,7 @@ public class Review implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Reviews.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -108,7 +112,7 @@ public class Review implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Reviews.SQL_UPDATE_ALL);
         bindData(statement);
         statement.bindLong(6, id);
@@ -116,7 +120,7 @@ public class Review implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Reviews.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

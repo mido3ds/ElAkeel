@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Customers;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Users;
 
-public class Customer implements Entity {
+public class Customer extends Entity {
     private User user;
     private String phone;
     private String region, streetNo, buildingNo;
@@ -129,14 +129,14 @@ public class Customer implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Customers.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Customers.SQL_UPDATE_ALL);
         bindData(statement);
         return statement.executeUpdateDelete() == 1;
@@ -157,7 +157,7 @@ public class Customer implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         return user.delete(db);
     }
 

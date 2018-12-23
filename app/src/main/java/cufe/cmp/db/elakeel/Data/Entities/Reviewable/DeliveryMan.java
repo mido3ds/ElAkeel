@@ -1,14 +1,14 @@
 package cufe.cmp.db.elakeel.Data.Entities.Reviewable;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
+import cufe.cmp.db.elakeel.Data.Entities.Order;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.DeliveryMen;
 
-public class DeliveryMan implements Entity {
+public class DeliveryMan extends Entity {
     private Reviewable reviewable;
     private String name;
     private byte[] image;
@@ -26,6 +26,10 @@ public class DeliveryMan implements Entity {
         name = cursor.getString(cursor.getColumnIndexOrThrow(DeliveryMen.NAME));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(DeliveryMen.IMAGE));
         phone = cursor.getString(cursor.getColumnIndexOrThrow(DeliveryMen.PHONE));
+    }
+
+    public static DeliveryMan from(Order order) {
+        return null; // TODO: 23/12/2018
     }
 
     public Reviewable getReviewable() {
@@ -57,8 +61,8 @@ public class DeliveryMan implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
-        reviewable.insert(db);
+    public boolean insert() {
+        reviewable.insert();
         SQLiteStatement statement = db.compileStatement(DeliveryMen.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -73,14 +77,14 @@ public class DeliveryMan implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(DeliveryMen.SQL_UPDATE_ALL);
         bindData(statement);
         return statement.executeUpdateDelete() == 1;
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
-        return reviewable.delete(db);
+    public boolean delete() {
+        return reviewable.delete();
     }
 }

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
 
-public class PromoCode implements Entity {
+public class PromoCode extends Entity {
     private long id;
     private String code;
     private Customer customer;
@@ -53,7 +53,7 @@ public class PromoCode implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(DbConstants.PromoCodes.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -66,7 +66,7 @@ public class PromoCode implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(DbConstants.PromoCodes.SQL_UPDATE_ALL);
         bindData(statement);
         statement.bindLong(2, id);
@@ -74,7 +74,7 @@ public class PromoCode implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(DbConstants.PromoCodes.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

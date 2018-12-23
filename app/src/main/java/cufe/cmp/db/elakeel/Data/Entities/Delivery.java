@@ -9,7 +9,7 @@ import java.util.Date;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Deliveries;
 
-public class Delivery implements Entity {
+public class Delivery extends Entity {
     private long id;
     private Deliveries.Status status;
     private Date leaveTime, arriveTime;
@@ -78,7 +78,7 @@ public class Delivery implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Deliveries.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -94,7 +94,7 @@ public class Delivery implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Deliveries.SQL_UPDATE_ALL);
         bindData(statement);
         statement.bindLong(5, id);
@@ -102,7 +102,7 @@ public class Delivery implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Deliveries.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

@@ -7,7 +7,7 @@ import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Restaurant;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Branches;
 
-public class Branch implements Entity {
+public class Branch extends Entity {
     private long id;
     private String region;
     private String streetNo;
@@ -66,7 +66,7 @@ public class Branch implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Branches.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -81,7 +81,7 @@ public class Branch implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement sqLiteStatement = db.compileStatement(Branches.SQL_UPDATE_ALL);
         bindData(sqLiteStatement);
         sqLiteStatement.bindLong(4, id);
@@ -89,7 +89,7 @@ public class Branch implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Branches.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

@@ -8,7 +8,7 @@ import cufe.cmp.db.elakeel.Data.Entities.Entity;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Meals;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Reviewables;
 
-public class Meal implements Entity {
+public class Meal extends Entity {
     private Reviewable reviewable;
     private String name;
     private byte[] image;
@@ -81,7 +81,7 @@ public class Meal implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Meals.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -97,14 +97,14 @@ public class Meal implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Meals.SQL_UPDATE_ALL);
         bindData(statement);
         return statement.executeUpdateDelete() != 0;
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         return reviewable.delete(db);
     }
 }

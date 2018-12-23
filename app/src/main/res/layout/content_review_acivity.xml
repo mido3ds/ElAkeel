@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".UI.Hossam.ReviewAcivity"
+              tools:context=".UI.Hossam.ReviewActivity"
               tools:showIn="@layout/activity_review_acivity">
 
     <LinearLayout

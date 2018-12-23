@@ -1,14 +1,14 @@
 package cufe.cmp.db.elakeel.Data.Entities.Reviewable;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
+import cufe.cmp.db.elakeel.Data.Entities.Order;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Chefs;
 
-public class Chef implements Entity {
+public class Chef extends Entity {
     private Reviewable reviewable;
     private String name;
     private String nationality;
@@ -29,6 +29,10 @@ public class Chef implements Entity {
         nationality = cursor.getString(cursor.getColumnIndexOrThrow(Chefs.NATIONALITY));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(Chefs.IMAGE));
         workHours = cursor.getString(cursor.getColumnIndexOrThrow(Chefs.WORK_HOURS));
+    }
+
+    public static Chef from(Order order) {
+        return null;// TODO: 23/12/2018
     }
 
     public Reviewable getReviewable() {
@@ -68,7 +72,7 @@ public class Chef implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         reviewable.insert(db);
         SQLiteStatement statement = db.compileStatement(Chefs.SQL_INSERT);
         bindData(statement);
@@ -85,14 +89,14 @@ public class Chef implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Chefs.SQL_UPDATE_ALL);
         bindData(statement);
         return statement.executeUpdateDelete() == 1;
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         return reviewable.delete(db);
     }
 }

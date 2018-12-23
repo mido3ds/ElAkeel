@@ -1,14 +1,13 @@
 package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Admins;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Users;
 
-public class Admin implements Entity {
+public class Admin extends Entity {
     private User user;
     private Admins.Rank rank;
 
@@ -41,7 +40,7 @@ public class Admin implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Admins.SQL_INSERT);
         statement.bindLong(0, rank.ordinal());
         statement.bindLong(1, user.getId());
@@ -49,7 +48,7 @@ public class Admin implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Admins.SQL_UPDATE_ALL);
         statement.bindLong(0, rank.ordinal());
         statement.bindLong(1, user.getId());
@@ -57,7 +56,7 @@ public class Admin implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
-        return user.delete(db);
+    public boolean delete() {
+        return user.delete();
     }
 }

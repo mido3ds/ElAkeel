@@ -7,7 +7,7 @@ import cufe.cmp.db.elakeel.Data.Entities.Entity;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Reviewables;
 
-public class Reviewable implements Entity {
+public class Reviewable extends Entity {
     private long id;
     private Reviewables.Type type;
 
@@ -33,7 +33,7 @@ public class Reviewable implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Reviewables.SQL_INSERT);
         statement.bindLong(0, type.ordinal());
         id = statement.executeInsert();
@@ -41,7 +41,7 @@ public class Reviewable implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Reviewables.SQL_UPDATE_ALL);
         statement.bindLong(0, type.ordinal());
         statement.bindLong(1, id);
@@ -49,7 +49,7 @@ public class Reviewable implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Reviewables.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

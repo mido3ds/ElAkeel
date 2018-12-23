@@ -8,7 +8,7 @@ import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Restaurant;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.RestaurantManagers;
 
-public class RestaurantManager implements Entity {
+public class RestaurantManager extends Entity {
     private User user;
     private Restaurant restaurant;
 
@@ -35,7 +35,7 @@ public class RestaurantManager implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(RestaurantManagers.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -47,12 +47,12 @@ public class RestaurantManager implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         return false;
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         return false;
     }
 }

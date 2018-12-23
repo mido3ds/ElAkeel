@@ -8,7 +8,7 @@ import cufe.cmp.db.elakeel.Data.Utility.PasswordAuthentication;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Users;
 
-public class User implements Entity {
+public class User extends Entity {
     private static final PasswordAuthentication PASSWORD_AUTHENTICATION = new PasswordAuthentication();
 
     private long id;
@@ -94,7 +94,7 @@ public class User implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Users.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -102,7 +102,7 @@ public class User implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Users.SQL_UPDATE_ALL);
         bindData(statement);
         statement.bindLong(5, id);
@@ -110,7 +110,7 @@ public class User implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Users.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() == 1;

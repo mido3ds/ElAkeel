@@ -3,13 +3,15 @@ package cufe.cmp.db.elakeel.Data.Entities;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Meal;
 import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Restaurant;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Orders;
 
-public class Order implements Entity {
+public class Order extends Entity {
     private long id;
     private Orders.Status status;
     private Date time;
@@ -46,7 +48,7 @@ public class Order implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(Orders.SQL_INSERT);
         bindData(statement);
         id = statement.executeInsert();
@@ -59,7 +61,7 @@ public class Order implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Orders.SQL_UPDATE_ALL);
         bindData(statement);
         statement.bindLong(2, id);
@@ -67,7 +69,7 @@ public class Order implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(Orders.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;
@@ -75,5 +77,9 @@ public class Order implements Entity {
 
     public Restaurant getRestaurant() {
         return null; // TODO: 23/12/2018
+    }
+
+    public ArrayList<Meal> getMeals() {
+        return null;// TODO: 23/12/2018
     }
 }

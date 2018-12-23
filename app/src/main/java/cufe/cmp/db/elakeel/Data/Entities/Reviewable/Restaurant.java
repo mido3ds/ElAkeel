@@ -5,11 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
+import cufe.cmp.db.elakeel.Data.Entities.Order;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Restaurants;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Restaurants.ServiceType;
 
-public class Restaurant implements Entity {
+public class Restaurant extends Entity {
     private Reviewable reviewable;
     private String name;
     private ServiceType serviceType;
@@ -30,6 +31,10 @@ public class Restaurant implements Entity {
         this.serviceType = serviceType;
         this.image = image;
         this.phoneNo = phoneNo;
+    }
+
+    public static Restaurant from(Order order) {
+        return null; // TODO: 23/12/2018
     }
 
     public String getName() {
@@ -78,7 +83,7 @@ public class Restaurant implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         reviewable.insert(db);
         SQLiteStatement statement = db.compileStatement(Restaurants.SQL_INSERT);
         bindData(statement);
@@ -86,14 +91,14 @@ public class Restaurant implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(Restaurants.SQL_UPDATE_ALL);
         bindData(statement);
         return statement.executeUpdateDelete() == 1;
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         return reviewable.delete(db);
     }
 }

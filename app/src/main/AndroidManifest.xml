@@ -40,7 +40,7 @@
                 android:label="@string/title_activity_meal"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".UI.Hossam.ReviewAcivity"
+                android:name=".UI.Hossam.ReviewActivity"
                 android:label="@string/title_activity_review_acivity"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity

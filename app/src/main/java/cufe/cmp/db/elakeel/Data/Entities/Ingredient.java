@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 
-public class Ingredient implements Entity {
+public class Ingredient extends Entity {
     private long id;
     private String name;
 
@@ -31,7 +31,7 @@ public class Ingredient implements Entity {
     }
 
     @Override
-    public boolean insert(SQLiteDatabase db) {
+    public boolean insert() {
         SQLiteStatement statement = db.compileStatement(DbConstants.Ingredients.SQL_INSERT);
         statement.bindString(0, name);
         id = statement.executeInsert();
@@ -39,7 +39,7 @@ public class Ingredient implements Entity {
     }
 
     @Override
-    public boolean update(SQLiteDatabase db) {
+    public boolean update() {
         SQLiteStatement statement = db.compileStatement(DbConstants.Ingredients.SQL_UPDATE_ALL);
         statement.bindString(0, name);
         statement.bindLong(1, id);
@@ -47,7 +47,7 @@ public class Ingredient implements Entity {
     }
 
     @Override
-    public boolean delete(SQLiteDatabase db) {
+    public boolean delete() {
         SQLiteStatement statement = db.compileStatement(DbConstants.Ingredients.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;

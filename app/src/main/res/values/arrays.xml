@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="PaymentType_array">
+        <item>Credit Card</item>
+        <item>Cash</item>
+    </string-array>
+
+    <string-array name="ServiceType_array">
+        <item>Food</item>
+        <item>Drinks</item>
+    </string-array>
+    <string-array name="Region_array">
+        <item>Cairo</item>
+        <item>Alex</item>
+        <item>Luxor</item>
+    </string-array>
+</resources>

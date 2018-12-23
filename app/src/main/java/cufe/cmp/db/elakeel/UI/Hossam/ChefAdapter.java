@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Chef;
 import cufe.cmp.db.elakeel.R;
 
 import java.util.ArrayList;
@@ -39,16 +40,16 @@ public class ChefAdapter extends ArrayAdapter<Chef> {
         TextView ChefnationalityTextView = listItemView.findViewById(R.id.chef_nationality);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
-        ChefnationalityTextView.setText(currentChef.getChef_nationality());
+        ChefnationalityTextView.setText(currentChef.getNationality());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
         TextView ChefNameTextView = listItemView.findViewById(R.id.Chef_Name);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
-        ChefNameTextView.setText(currentChef.getChef_Name());
+        ChefNameTextView.setText(currentChef.getName());
 
         Button SelectChefbtn = listItemView.findViewById(R.id.ChefSelect);
-
+        // TODO: 23/12/2018 what is this ?
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView

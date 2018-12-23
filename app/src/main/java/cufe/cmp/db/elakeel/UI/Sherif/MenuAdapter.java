@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import cufe.cmp.db.elakeel.R;
-import cufe.cmp.db.elakeel.UI.Hossam.MenuItem;
 
 import java.util.ArrayList;
 

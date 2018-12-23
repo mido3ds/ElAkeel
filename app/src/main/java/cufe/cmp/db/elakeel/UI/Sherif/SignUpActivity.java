@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.*;
+import cufe.cmp.db.elakeel.Data.Database.DbConstants;
+import cufe.cmp.db.elakeel.Data.Database.DbConstants.Customers;
+import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
+import cufe.cmp.db.elakeel.Data.Entities.Users.User;
 import cufe.cmp.db.elakeel.R;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -25,37 +27,87 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText SecurityCode;
     private EditText ExpireDate;
 
+    private Bitmap image = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        Region = findViewById(R.id.Region);
+        ArrayAdapter<CharSequence> regAdapter = ArrayAdapter.createFromResource(this, R.array.Region_array, android.R.layout.simple_spinner_item);
+        regAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Region.setAdapter(regAdapter);
+
+        PaymentType = findViewById(R.id.PaymentType);
+        ArrayAdapter<CharSequence> payAdapter = ArrayAdapter.createFromResource(this, R.array.PaymentType_array, android.R.layout.simple_spinner_item);
+        payAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        PaymentType.setAdapter(payAdapter);
+
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         FirstName = findViewById(R.id.FirstName);
         LastName = findViewById(R.id.LastName);
         ProfilePic = findViewById(R.id.Image);
         PhoneNo = findViewById(R.id.PhoneNo);
-        Region = findViewById(R.id.Region);
         StreetNo = findViewById(R.id.StreetNo);
         BuildingNo = findViewById(R.id.BuildingNo);
-        PaymentType = findViewById(R.id.PaymentType);
         CardNo = findViewById(R.id.CardNo);
         SecurityCode = findViewById(R.id.SecurityCode);
         ExpireDate = findViewById(R.id.ExpireDate);
 
         ProfilePic.setOnClickListener(v -> pickImage());
 
-//        String email1 = email.getText().toString();
-//        String password1 = password.getText().toString();
-//        String fname = FirstName.getText().toString();
-//        String lname = LastName.getText().toString();
-//        int cardNo;
-//        int securityCode;
-//        String phoneNo = PhoneNo.getText().toString();
-//        String region = Region.getSelectedItem().toString();
-//        int street = Integer.parseInt(StreetNo.getText().toString());
-//        int building = Integer.parseInt(BuildingNo.getText().toString());
-//        String expire = ExpireDate.getText().toString();
+        findViewById(R.id.signUpBtn).setOnClickListener(v -> {
+            String email1 = email.getText().toString();
+            String password1 = password.getText().toString();
+            String fname = FirstName.getText().toString();
+            String lname = LastName.getText().toString();
+            String cardNo = CardNo.getText().toString();
+            String securityCode = SecurityCode.getText().toString();
+            String phoneNo = PhoneNo.getText().toString();
+            String region = Region.getSelectedItem().toString();
+            String street = StreetNo.getText().toString();
+            String building = BuildingNo.getText().toString();
+            String expire = ExpireDate.getText().toString();
+
+            Customers.PaymentMethod paymentMethod = Customers.PaymentMethod.CreditCard;
+            switch (PaymentType.getSelectedItemPosition()) {
+                case 0:
+                    paymentMethod = Customers.PaymentMethod.CreditCard;
+                    break;
+                case 1:
+                    paymentMethod = Customers.PaymentMethod.Cash;
+                    break;
+            }
+
+            if (email1 == null || password1 == null || fname == null || lname == null || phoneNo == null || region == null || street == null
+            || building == null) {
+                Toast.makeText(this, "Invalid or incomplete info", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (paymentMethod == Customers.PaymentMethod.CreditCard) {
+                if (expire == null || cardNo == null || securityCode == null) {
+                    Toast.makeText(this, "Invalid or incomplete info", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            User user = new User(fname + " " + lname, email1, password1, image, DbConstants.Users.Type.Customer);
+            Customer customer = new Customer(user, phoneNo, region, street, building, 0, paymentMethod, cardNo, securityCode, expire);
+
+            if (!user.insert()) {
+                Toast.makeText(this, "Error in inserting user", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!customer.insert()) {
+                Toast.makeText(this, "Error in inserting customer", Toast.LENGTH_SHORT).show();
+                user.delete();
+                return;
+            }
+        });
     }
 
     private final void pickImage() {
@@ -80,7 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
             final Bundle extras = data.getExtras();
             if (extras != null) {
                 //Get image
-                Bitmap newProfilePic = extras.getParcelable("data");
+                image = extras.getParcelable("data");
             }
         }
     }

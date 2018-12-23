@@ -1,9 +1,10 @@
 package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
+import cufe.cmp.db.elakeel.Data.Utility.BitmapUtil;
 import cufe.cmp.db.elakeel.Data.Utility.PasswordAuthentication;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Users;
@@ -27,11 +28,11 @@ public class User extends Entity {
         type = Users.Type.values()[cursor.getInt(cursor.getColumnIndexOrThrow(Users.TYPE))];
     }
 
-    public User(String name, String email, String password, byte[] image, Users.Type type) {
+    public User(String name, String email, String password, Bitmap image, Users.Type type) {
         this.name = name;
         this.email = email;
         setPassword(password);
-        this.image = image;
+        this.image = BitmapUtil.bitmapToBytes(image);
         this.type = type;
     }
 

@@ -1,7 +1,6 @@
 package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
 import cufe.cmp.db.elakeel.Data.Entities.Order;
@@ -158,7 +157,7 @@ public class Customer extends Entity {
 
     @Override
     public boolean delete() {
-        return user.delete(db);
+        return user.delete();
     }
 
     public ArrayList<Order> getOrders() {

@@ -125,6 +125,10 @@
                 android:ems="10"
                 android:hint="Expire Date"
                 android:inputType="date"/>
+        <Button
+                android:text="Sign Up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/signUpBtn"/>
 
     </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import cufe.cmp.db.elakeel.Data.Entities.Review;
 import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Meal;
 import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
@@ -40,7 +41,9 @@ public class OrderItemListAdapter extends ArrayAdapter<Meal> {
         RateRatingBar.setRating(mealReview.getStars());
         RateRatingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
             mealReview.setStars((int) rating);
-            mealReview.update();
+            if (!mealReview.update() || !mealReview.insert()) {
+                Toast.makeText(getContext(), "Error couldn't rate ", Toast.LENGTH_SHORT).show();
+            }
         });
 
         return listItemView;

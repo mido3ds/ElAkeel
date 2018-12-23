@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,10 +21,18 @@ public class AddRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_restaurant);
 
-        EditText nameEditText = findViewById(R.id.Name);
         Spinner servTypeSpinner = findViewById(R.id.serviceType);
-        EditText restPhoneNo = findViewById(R.id.RestaurantPhoneNo);
+        ArrayAdapter<CharSequence> servAdapter = ArrayAdapter.createFromResource(this, R.array.ServiceType_array, android.R.layout.simple_spinner_item);
+        servAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        servTypeSpinner.setAdapter(servAdapter);
+
         Spinner regSpinner = findViewById(R.id.RestaurantRegion);
+        ArrayAdapter<CharSequence> regAdapter = ArrayAdapter.createFromResource(this, R.array.Region_array, android.R.layout.simple_spinner_item);
+        regAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        regSpinner.setAdapter(regAdapter);
+
+        EditText nameEditText = findViewById(R.id.Name);
+        EditText restPhoneNo = findViewById(R.id.RestaurantPhoneNo);
         EditText streetNoEditText = findViewById(R.id.RestaurantStreetNo);
         EditText buildNoEditText = findViewById(R.id.RestaurnatBuildingNo);
 

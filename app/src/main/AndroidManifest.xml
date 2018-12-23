@@ -28,7 +28,7 @@
                 android:label="@string/title_activity_chefs_list_view"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-                android:name=".UI.Hossam.RestuarantMenuActivity"
+                android:name=".UI.Hossam.RestaurantMenuActivity"
                 android:label="@string/title_activity_restuarant__menu"
                 android:theme="@style/AppTheme.NoActionBar"/>
         <activity

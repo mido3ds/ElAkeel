@@ -24,6 +24,10 @@ public class Admin implements Entity {
         rank = Admins.Rank.values()[cursor.getInt(cursor.getColumnIndexOrThrow(Admins.RANK))];
     }
 
+    public static Admin from(User user) {
+        return null; // TODO: 23/12/2018
+    }
+
     public User getUser() {
         return user;
     }

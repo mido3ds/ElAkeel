@@ -11,7 +11,7 @@ import cufe.cmp.db.elakeel.R;
 
 import java.util.ArrayList;
 
-public class RestuarantMenuActivity extends AppCompatActivity {
+public class RestaurantMenuActivity extends AppCompatActivity {
     ArrayList<MealActivity> OrderList = new ArrayList<MealActivity>();
 
     public ArrayList<MealActivity> getOrderList() {

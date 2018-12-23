@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import cufe.cmp.db.elakeel.Data.Entities.Users.Admin;
+import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
+import cufe.cmp.db.elakeel.Data.Entities.Users.RestaurantManager;
 import cufe.cmp.db.elakeel.Data.Entities.Users.User;
 import cufe.cmp.db.elakeel.R;
-
-import java.io.Serializable;
+import cufe.cmp.db.elakeel.UI.Sherif.AdminFunctionalitiesActivity;
+import cufe.cmp.db.elakeel.UI.Sherif.ManagerActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,9 +28,30 @@ public class LoginActivity extends AppCompatActivity {
                 String password = ((TextView) findViewById(R.id.passwordEditView)).getText().toString();
                 User user = User.getUser(username, password);
 
-                Intent intent = new Intent(LoginActivity.this, AfterLoginActivity.class);
-                intent.putExtra("user", (Serializable) user);
-                startActivity(intent);
+                switch (user.getType()) {
+                    case Customer: {
+                        Customer customer = Customer.from(user);
+                        Intent intent = new Intent(LoginActivity.this, AfterLoginActivity.class);
+                        intent.putExtra(customer.getClass().getName(), customer);
+                        startActivity(intent);
+                        break;
+                    }
+                    case RestaurantManager: {
+                        RestaurantManager manager = RestaurantManager.from(user);
+                        Intent intent = new Intent(this, ManagerActivity.class);
+                        intent.putExtra(manager.getClass().getName(), manager);
+                        startActivity(intent);
+                        break;
+                    }
+                    case Admin: {
+                        Admin admin = Admin.from(user);
+                        Intent intent = new Intent(this, AdminFunctionalitiesActivity.class);
+                        intent.putExtra(admin.getClass().getName(), admin);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "User name or password is wrong", Toast.LENGTH_SHORT).show();

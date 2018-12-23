@@ -22,6 +22,10 @@ public class RestaurantManager implements Entity {
         restaurant = new Restaurant(cursor);
     }
 
+    public static RestaurantManager from(User user) {
+        return null; // TODO: 23/12/2018
+    }
+
     public User getUser() {
         return user;
     }

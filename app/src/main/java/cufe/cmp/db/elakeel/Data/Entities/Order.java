@@ -3,6 +3,7 @@ package cufe.cmp.db.elakeel.Data.Entities;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Restaurant;
 
 import java.util.Date;
 
@@ -70,5 +71,9 @@ public class Order implements Entity {
         SQLiteStatement statement = db.compileStatement(Orders.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;
+    }
+
+    public Restaurant getRestaurant() {
+        return null; // TODO: 23/12/2018
     }
 }

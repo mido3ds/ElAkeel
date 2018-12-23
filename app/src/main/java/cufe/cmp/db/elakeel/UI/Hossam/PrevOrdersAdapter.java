@@ -1,6 +1,7 @@
 package cufe.cmp.db.elakeel.UI.Hossam;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import cufe.cmp.db.elakeel.Data.Entities.Order;
 import cufe.cmp.db.elakeel.R;
 
 import java.util.ArrayList;
@@ -29,15 +31,16 @@ public class PrevOrdersAdapter extends ArrayAdapter<Order> {
         Order order = getItem(position);
 
         TextView restautantNameTextView = listItemView.findViewById(R.id.Restuarant_Name);
-        restautantNameTextView.setText(order.getRestaurantName());
+        restautantNameTextView.setText(order.getRestaurant().getName());
 
         TextView orderDAteTextView = listItemView.findViewById(R.id.OrderDate);
-        orderDAteTextView.setText(order.getOrderDate());
+        orderDAteTextView.setText(order.getTime().toString());
 
         Button revieworderbtn = listItemView.findViewById(R.id.ReviewOrder);
         revieworderbtn.setOnClickListener(v -> {
-            // Intent RevieworderIntent = new Intent(Order.this , Resturants.class);
-            //startActivity(neworderIntent);
+            Intent intent = new Intent(getContext(), ReviewAcivity.class);
+            intent.putExtra(Order.class.getName(), order);
+            getContext().startActivity(intent);
         });
 
         return listItemView;

@@ -4,6 +4,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
+import cufe.cmp.db.elakeel.Data.Entities.Order;
+
+import java.util.ArrayList;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Customers;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Users;
@@ -43,6 +46,10 @@ public class Customer implements Entity {
         cardNo = cursor.getString(cursor.getColumnIndexOrThrow(Customers.CARD_NO));
         cardSecNo = cursor.getString(cursor.getColumnIndexOrThrow(Customers.CARD_SEC_NO));
         cardExpireData = cursor.getString(cursor.getColumnIndexOrThrow(Customers.CARD_EXPIRE_DATA));
+    }
+
+    public static Customer from(User user) throws Exception {
+        return null;// TODO: 23/12/2018
     }
 
     public User getUser() {
@@ -152,5 +159,9 @@ public class Customer implements Entity {
     @Override
     public boolean delete(SQLiteDatabase db) {
         return user.delete(db);
+    }
+
+    public ArrayList<Order> getOrders() {
+        return null; // TODO: 23/12/2018
     }
 }

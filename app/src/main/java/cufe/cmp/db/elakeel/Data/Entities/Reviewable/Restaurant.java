@@ -108,4 +108,8 @@ public class Restaurant extends Entity {
     public boolean delete() {
         return reviewable.delete();
     }
+
+    public ArrayList<Meal> getAllMeals() {
+        return null; // TODO: 23/12/2018
+    }
 }

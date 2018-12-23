@@ -42,7 +42,7 @@ public class ManagerActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.ViewRates).setOnClickListener(v -> {
-            Intent intent = new Intent(this, mm.class);// TODO: 23/12/2018
+            Intent intent = new Intent(this, ViewRates.class);
             intent.putExtra(manager.getClass().getName(), manager);
             startActivity(intent);
         });

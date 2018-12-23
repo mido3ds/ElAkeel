@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Chef;
 import cufe.cmp.db.elakeel.R;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class RestuarantChefsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long ID) {
                 Chef Chef = ChefsItem.getItem(position);
-                setSelectedChef(Chef.getChef_Name());
+                setSelectedChef(Chef.getName());
             }
         });
 

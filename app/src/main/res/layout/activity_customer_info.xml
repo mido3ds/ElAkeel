@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CustomerInfoActivity">
+
+    <TextView
+        android:id="@+id/CustomerFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First Name"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/CustomerLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last Name"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/CustomerPhoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone no."
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/CustomerRegion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Region"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/CustomerStreetNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Street no."
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/CustomerBuildingNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Building no."
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/CustomerInfoReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return" />
+</LinearLayout>

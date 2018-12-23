@@ -73,7 +73,7 @@ public class FiltrationActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(this, mm.class);// TODO: 23/12/2018 from sherif
+            Intent intent = new Intent(this, FilterationActivity.class);// TODO: 23/12/2018 from sherif
             intent.putExtra(customer.getClass().getName(), customer);
             intent.putExtra("restaurants", restaurants);
             startActivity(intent);

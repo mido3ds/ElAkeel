@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UpdateRestaurantInfoActivity">
+
+    <EditText
+        android:id="@+id/UpdateName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName" />
+    <Spinner
+        android:id="@+id/UpdateRegion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/UpdateRestaurantPhoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Phone no."
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/UpdateRestaurantAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address" />
+
+    <Spinner
+        android:id="@+id/UpdateRestaurantRegion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/UpdateRestaurantStreetNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Street no."
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/UpdateRestaurnatBuildingNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Building no."
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/Update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:textAllCaps="false"/>
+</LinearLayout>

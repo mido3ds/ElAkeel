@@ -6,11 +6,11 @@
 
     <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:divider="#f00"
             android:dividerHeight="1dp"
-            android:id="@+id/Prev_orders_List_view"></ListView>
+            android:id="@+id/Prev_orders_List_view"/>
 
     <Button
             android:id="@+id/MakeNewOrderButton"
@@ -20,6 +20,6 @@
             android:background="#03B424"
             android:text="Make new order"
             android:layout_marginBottom="8dp"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"/>
 </LinearLayout>
 

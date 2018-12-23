@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+import cufe.cmp.db.elakeel.Data.Entities.Users.User;
 import cufe.cmp.db.elakeel.R;
+
+import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,9 +20,18 @@ public class LoginActivity extends AppCompatActivity {
 
         Button Login = findViewById(R.id.btnLogin);
         Login.setOnClickListener(view -> {
-            Toast.makeText(view.getContext(), "After login in ", Toast.LENGTH_SHORT).show();
+            try {
+                String username = ((TextView) findViewById(R.id.edt_userName)).getText().toString();
+                String password = ((TextView) findViewById(R.id.passwordEditView)).getText().toString();
+                User user = User.getUser(username, password);
 
-            startActivity(new Intent(LoginActivity.this, AfterLoginActivity.class));
+                Intent intent = new Intent(LoginActivity.this, AfterLoginActivity.class);
+                intent.putExtra("user", (Serializable) user);
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "User name or password is wrong", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

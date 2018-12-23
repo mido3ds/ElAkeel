@@ -35,6 +35,10 @@ public class User implements Entity {
         this.type = type;
     }
 
+    public static User getUser(String username, String password) throws Exception {
+        return null;// TODO: 23/12/2018
+    }
+
     public long getId() {
         return id;
     }

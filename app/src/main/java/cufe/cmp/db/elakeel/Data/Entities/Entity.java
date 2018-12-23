@@ -2,7 +2,9 @@ package cufe.cmp.db.elakeel.Data.Entities;
 
 import android.database.sqlite.SQLiteDatabase;
 
-public interface Entity {
+import java.io.Serializable;
+
+public interface Entity extends Serializable {
     /**
      * insert in db with stored id
      *

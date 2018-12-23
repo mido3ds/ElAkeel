@@ -134,7 +134,7 @@ public class DbConstants {
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s INT DEFAULT 0, " +
-                                "%s INT DEFAULT $d, " +
+                                "%s INT DEFAULT %d, " +
                                 "%s TEXT, " +
                                 "%s TEXT, " +
                                 "%s TEXT);",
@@ -380,7 +380,7 @@ public class DbConstants {
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
-                                "%s INT NOT REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
                         TABLE_NAME,
                         ID,
                         REGION,

@@ -1,7 +1,8 @@
 package cufe.cmp.db.elakeel.UI.Sherif;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import cufe.cmp.db.elakeel.R;
 
 public class FilteredRestaurantsItemActivity extends AppCompatActivity {
 

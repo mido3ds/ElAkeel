@@ -1,11 +1,13 @@
 package cufe.cmp.db.elakeel.UI.Sherif;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import cufe.cmp.db.elakeel.R;
+import cufe.cmp.db.elakeel.UI.Hossam.RestaurantMenuActivity;
 
 import java.util.ArrayList;
 
@@ -24,11 +26,11 @@ public class FilteredRestaurantsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FilteredRestaurant FilteredRestaurant = FilteredRestaurantAdapter.getItem(position);
-                Intent ReviewOrderIntent = new Intent(FilteredRestaurantsActivity.this ,.class);//go to hossam's menu (selected restaurat menu)
+                Intent ReviewOrderIntent = new Intent(FilteredRestaurantsActivity.this , RestaurantMenuActivity.class);//go to hossam's menu (selected restaurat menu)
                 startActivity(ReviewOrderIntent);
             }
         });
 
-        List.setAdapter(PendingOrdersAdapter);
+//        List.setAdapter(PendingOrdersAdapter);
     }
 }

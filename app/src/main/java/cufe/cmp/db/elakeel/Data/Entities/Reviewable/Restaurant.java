@@ -37,11 +37,35 @@ public class Restaurant extends Entity {
     }
 
     public static Restaurant from(Order order) {
-        return null; // TODO: 23/12/2018
+        Cursor mealCursor = db.rawQuery("SELECT MealID FROM OrdersContainMeals WHERE OrderID = " + order.getId(), null);
+        mealCursor.moveToFirst();
+        int mealId = mealCursor.getInt(0);
+
+        Cursor restrIdCursor = db.rawQuery("SELECT RestrID FROM Meals WHERE ReviewableID = " + mealId, null);
+        restrIdCursor.moveToFirst();
+        int restrId = restrIdCursor.getInt(0);
+
+        Cursor restrCursor = db.rawQuery("SELECT * FROM Restaurants WHERE ReviewableID = " + restrId, null);
+        restrCursor.moveToFirst();
+        Restaurant restaurant = new Restaurant(restrCursor);
+
+        restrCursor.close();
+        mealCursor.close();
+        restrIdCursor.close();
+
+        return restaurant;
     }
 
     public static ArrayList<Restaurant> getRestaurants(ServiceType serviceType, String region) {
-        return null;// TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT * FROM Restaurants WHERE ServiceType = " + serviceType.ordinal(), null);
+        cursor.moveToFirst();
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            restaurants.add(new Restaurant(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return restaurants;
     }
 
     public String getName() {

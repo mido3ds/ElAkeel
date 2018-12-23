@@ -1,7 +1,6 @@
 package cufe.cmp.db.elakeel.Data.Entities;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 
@@ -16,6 +15,10 @@ public class Ingredient extends Entity {
     public Ingredient(Cursor cursor) {
         this.id = cursor.getLong(cursor.getColumnIndexOrThrow(DbConstants.Ingredients.ID));
         this.name = cursor.getString(cursor.getColumnIndexOrThrow(DbConstants.Ingredients.NAME));
+    }
+
+    public static String allIngredientsAsString() {
+        return null;// TODO: 23/12/2018
     }
 
     public long getId() {

@@ -1,11 +1,11 @@
 package cufe.cmp.db.elakeel.UI.Hossam;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import cufe.cmp.db.elakeel.Data.Entities.Ingredient;
+import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Meal;
 import cufe.cmp.db.elakeel.R;
 
 public class MealActivity extends AppCompatActivity {
@@ -14,17 +14,11 @@ public class MealActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Meal meal = (Meal) getIntent().getSerializableExtra(Meal.class.getName());
+        ((TextView) findViewById(R.id.mealNameTextView)).setText(meal.getName());
+        ((ImageView) findViewById(R.id.mealImageView)).setImageBitmap(meal.getImage());
+        ((TextView) findViewById(R.id.ingredientsTextView)).setText(Ingredient.allIngredientsAsString());
+        findViewById(R.id.backToMenuBtn).setOnClickListener(v -> finish());
     }
-
 }

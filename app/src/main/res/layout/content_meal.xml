@@ -8,6 +8,7 @@
               tools:showIn="@layout/activity_meal">
 
     <TextView
+            android:id="@+id/mealNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
@@ -20,16 +21,17 @@
             android:textStyle="bold"/>
 
     <ImageView
+            android:id="@+id/mealImageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"/>
 
-    <ListView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="6"></ListView>
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/ingredientsTextView"/>
 
     <Button
+            android:id="@+id/backToMenuBtn"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

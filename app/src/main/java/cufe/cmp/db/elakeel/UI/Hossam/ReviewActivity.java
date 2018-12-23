@@ -1,5 +1,6 @@
 package cufe.cmp.db.elakeel.UI.Hossam;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -51,26 +52,31 @@ public class ReviewActivity extends AppCompatActivity {
         restRate.setRating(restReview.getStars());
         restRate.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
             restReview.setStars((int) rating);
-            restReview.update();
+            if (!restReview.update())
+                restReview.insert();
         });
 
         chefRate.setRating(chefReview.getStars());
         chefRate.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
             chefReview.setStars((int) rating);
-            chefReview.update();
+            if (!chefReview.update())
+                chefReview.insert();
         });
 
         delManRate.setRating(deliveryReview.getStars());
         delManRate.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
             deliveryReview.setStars((int) rating);
-            deliveryReview.update();
+            if (!deliveryReview.update())
+                deliveryReview.insert();
         });
 
         OrderItemListAdapter orderItemListAdapter = new OrderItemListAdapter(this, meals, customer);
         listView.setAdapter(orderItemListAdapter);
         listView.setOnItemClickListener((adapterView, view, position, ID) -> {
             Meal meal = orderItemListAdapter.getItem(position);
-            // TODO: 23/12/2018
+            Intent intent = new Intent(this, MealActivity.class);
+            intent.putExtra(meal.getClass().getName(), meal);
+            startActivity(intent);
         });
 
         backToOrders.setOnClickListener(v -> finish());

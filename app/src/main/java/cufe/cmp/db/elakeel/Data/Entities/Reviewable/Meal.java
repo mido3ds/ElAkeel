@@ -1,9 +1,10 @@
 package cufe.cmp.db.elakeel.Data.Entities.Reviewable;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
+import cufe.cmp.db.elakeel.Data.Utility.BitmapUtil;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Meals;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Reviewables;
@@ -48,12 +49,12 @@ public class Meal extends Entity {
         this.name = name;
     }
 
-    public byte[] getImage() {
-        return image;
+    public Bitmap getImage() {
+        return BitmapUtil.bytesToBitmap(image);
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImage(Bitmap bitmap) {
+        this.image = BitmapUtil.bitmapToBytes(bitmap);
     }
 
     public double getPrice() {
@@ -105,6 +106,6 @@ public class Meal extends Entity {
 
     @Override
     public boolean delete() {
-        return reviewable.delete(db);
+        return reviewable.delete();
     }
 }

@@ -73,7 +73,7 @@ public class Chef extends Entity {
 
     @Override
     public boolean insert() {
-        reviewable.insert(db);
+        reviewable.insert();
         SQLiteStatement statement = db.compileStatement(Chefs.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -97,6 +97,6 @@ public class Chef extends Entity {
 
     @Override
     public boolean delete() {
-        return reviewable.delete(db);
+        return reviewable.delete();
     }
 }

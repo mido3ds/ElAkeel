@@ -10,5 +10,7 @@ public class MenuListViewItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_list_view_item);
+
+        // TODO: 23/12/2018 what the fuck is this
     }
 }

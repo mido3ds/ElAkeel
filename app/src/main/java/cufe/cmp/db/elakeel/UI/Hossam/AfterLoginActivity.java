@@ -8,7 +8,7 @@ import android.widget.ListView;
 import cufe.cmp.db.elakeel.Data.Entities.Order;
 import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
 import cufe.cmp.db.elakeel.R;
-import cufe.cmp.db.elakeel.UI.Sherif.FilterationActivity;
+import cufe.cmp.db.elakeel.UI.Sherif.FiltrationActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class AfterLoginActivity extends AppCompatActivity {
 
         Button makeneworder = findViewById(R.id.MakeNewOrderButton);
         makeneworder.setOnClickListener(v -> {
-            Intent neworderIntent = new Intent(AfterLoginActivity.this, FilterationActivity.class);
+            Intent neworderIntent = new Intent(AfterLoginActivity.this, FiltrationActivity.class);
             neworderIntent.putExtra(customer.getClass().getName(), customer);
             startActivity(neworderIntent);
         });

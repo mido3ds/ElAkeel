@@ -10,5 +10,7 @@ public class AddAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_admin);
+
+        // TODO: 23/12/2018  
     }
 }

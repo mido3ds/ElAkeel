@@ -9,4 +9,14 @@
     <string name="title_activity_meal">Meal</string>
     <string name="title_activity_review_acivity">ReviewAcivity</string>
     <string name="title_activity_meal__rate__list_view">Meal_Rate_List_view</string>
+    <string-array name="ServiceType_array">
+        <item>Food</item>
+        <item>Drinks</item>
+    </string-array>
+    <string-array name="Region_array">
+        <item>Cairo</item>
+        <item>Alex</item>
+        <item>Luxor</item>
+    </string-array>
+    <string name="title_activity_statistics">StatisticsActivity</string>
 </resources>

@@ -23,7 +23,7 @@ public class DbConstants {
                         TABLE_NAME,
                         REVIEWABLE_ID, Reviewables.TABLE_NAME, Reviewables.ID,
                         NAME,
-                        SERVICE_TYPE, ServiceType.Unspecified.ordinal(),
+                        SERVICE_TYPE, ServiceType.Food.ordinal(),
                         IMAGE,
                         PHONE
                 );
@@ -39,8 +39,8 @@ public class DbConstants {
                 );
 
         public enum ServiceType {
-            Unspecified
-        }//TODO
+            Food, Drinks
+        }
     }
 
     public static final class Chefs {
@@ -251,7 +251,9 @@ public class DbConstants {
                         TABLE_NAME, RANK, USER_ID
                 );
 
-        public enum Rank {}//TODO
+        public enum Rank {
+            First, Second
+        }
     }
 
     public static final class RestaurantManagers {
@@ -463,7 +465,9 @@ public class DbConstants {
                         PRICE, TYPE, RESTR_ID, REVIEWABLE_ID
                 );
 
-        public enum Type {}//TODO
+        public enum Type {
+            Big, Medium
+        }
     }
 
     public static final class Orders {
@@ -499,7 +503,9 @@ public class DbConstants {
                         TABLE_NAME, ID
                 );
 
-        public enum Status {}//TODO
+        public enum Status {
+            NotDone, Done
+        }
     }
 
     public static final class Bills {
@@ -592,7 +598,9 @@ public class DbConstants {
                         TABLE_NAME, ID
                 );
 
-        public enum Status {}//TODO
+        public enum Status {
+            OnWay, Delivered
+        }
     }
 
     public static final class BillContainsOrders {

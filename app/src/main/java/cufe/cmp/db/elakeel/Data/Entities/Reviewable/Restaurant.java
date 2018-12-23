@@ -1,11 +1,14 @@
 package cufe.cmp.db.elakeel.Data.Entities.Reviewable;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
 import cufe.cmp.db.elakeel.Data.Database.DbConstants;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
 import cufe.cmp.db.elakeel.Data.Entities.Order;
+import cufe.cmp.db.elakeel.Data.Utility.BitmapUtil;
+
+import java.util.ArrayList;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Restaurants;
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Restaurants.ServiceType;
@@ -25,16 +28,20 @@ public class Restaurant extends Entity {
         phoneNo = cursor.getString(cursor.getColumnIndexOrThrow(Restaurants.PHONE));
     }
 
-    public Restaurant(String name, ServiceType serviceType, byte[] image, String phoneNo) {
+    public Restaurant(String name, ServiceType serviceType, Bitmap image, String phoneNo) {
         reviewable = new Reviewable(DbConstants.Reviewables.Type.Restaurant);
         this.name = name;
         this.serviceType = serviceType;
-        this.image = image;
+        this.image = BitmapUtil.bitmapToBytes(image);
         this.phoneNo = phoneNo;
     }
 
     public static Restaurant from(Order order) {
         return null; // TODO: 23/12/2018
+    }
+
+    public static ArrayList<Restaurant> getRestaurants(ServiceType serviceType, String region) {
+        return null;// TODO: 23/12/2018
     }
 
     public String getName() {
@@ -84,7 +91,7 @@ public class Restaurant extends Entity {
 
     @Override
     public boolean insert() {
-        reviewable.insert(db);
+        reviewable.insert();
         SQLiteStatement statement = db.compileStatement(Restaurants.SQL_INSERT);
         bindData(statement);
         return statement.executeInsert() != -1;
@@ -99,6 +106,6 @@ public class Restaurant extends Entity {
 
     @Override
     public boolean delete() {
-        return reviewable.delete(db);
+        return reviewable.delete();
     }
 }

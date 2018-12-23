@@ -10,5 +10,9 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        findViewById(R.id.AddNewItem).setOnClickListener(v -> {
+            // TODO: 23/12/2018
+        });
     }
 }

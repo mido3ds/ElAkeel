@@ -7,7 +7,6 @@
                 android:name=".UI.Hossam.AfterLoginActivity"
                 android:label="@string/title_activity_after_login"
                 android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity
                 android:name=".UI.Hossam.PrevOrdersListActivity"
@@ -22,7 +21,6 @@
                 android:label="@string/title_activity_login"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
         <activity
                 android:name=".UI.Hossam.ChefListActivity"
                 android:label="@string/title_activity_chefs_list_view"
@@ -47,21 +45,25 @@
                 android:name=".UI.Hossam.MealRateListActivity"
                 android:label="@string/title_activity_meal__rate__list_view"
                 android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity android:name=".UI.Sherif.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".UI.Sherif.SignUpActivity"/>
-        <activity android:name=".UI.Sherif.FilterationActivity"/>
+        <activity android:name=".UI.Sherif.FiltrationActivity"/>
         <activity android:name=".UI.Sherif.AdminFunctionalitiesActivity"/>
         <activity android:name=".UI.Sherif.AddRestaurantActivity"/>
         <activity android:name=".UI.Sherif.AddAdminActivity"/>
         <activity android:name=".UI.Sherif.ManagerActivity"/>
         <activity android:name=".UI.Sherif.MenuActivity"/>
         <activity android:name=".UI.Sherif.MenuListViewItemActivity"/>
+        <activity
+                android:name=".UI.StatisticsActivity"
+                android:label="@string/title_activity_statistics">
+        </activity>
     </application>
 
 </manifest>

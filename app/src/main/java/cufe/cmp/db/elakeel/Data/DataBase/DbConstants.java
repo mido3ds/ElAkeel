@@ -14,7 +14,7 @@ public class DbConstants {
                 PHONE = "Phone";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
                                 "%s INT DEFAULT %d, " +
@@ -23,7 +23,7 @@ public class DbConstants {
                         TABLE_NAME,
                         REVIEWABLE_ID, Reviewables.TABLE_NAME, Reviewables.ID,
                         NAME,
-                        SERVICE_TYPE, ServiceType.Unspecified.ordinal(),
+                        SERVICE_TYPE, ServiceType.Food.ordinal(),
                         IMAGE,
                         PHONE
                 );
@@ -39,8 +39,8 @@ public class DbConstants {
                 );
 
         public enum ServiceType {
-            Unspecified
-        }//TODO
+            Food, Drinks
+        }
     }
 
     public static final class Chefs {
@@ -54,7 +54,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
                                 "%s TEXT, " +
@@ -89,7 +89,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
                                 "%s BLOB, " +
@@ -127,14 +127,14 @@ public class DbConstants {
                 CARD_EXPIRE_DATA = "CardExpireData";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s INT DEFAULT 0, " +
-                                "%s INT DEFAULT $d, " +
+                                "%s INT DEFAULT %d, " +
                                 "%s TEXT, " +
                                 "%s TEXT, " +
                                 "%s TEXT);",
@@ -186,7 +186,7 @@ public class DbConstants {
                 REVIEWABLE_ID = "ReviewableID";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s(" +
+                        "CREATE TABLE IF NOT EXISTS %s(" +
                                 "%s INT PRIMARY KEY, " +
                                 "%s INT DEFAULT 1, " +
                                 "%s TEXT, " +
@@ -233,7 +233,7 @@ public class DbConstants {
                 RANK = "Rank";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL);",
                         TABLE_NAME,
@@ -251,7 +251,9 @@ public class DbConstants {
                         TABLE_NAME, RANK, USER_ID
                 );
 
-        public enum Rank {}//TODO
+        public enum Rank {
+            First, Second
+        }
     }
 
     public static final class RestaurantManagers {
@@ -262,7 +264,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "PRIMARY KEY(%s, %s));",
@@ -289,7 +291,7 @@ public class DbConstants {
                 TYPE = "Type";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
@@ -334,7 +336,7 @@ public class DbConstants {
                 TYPE = "Type";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL);",
                         TABLE_NAME,
@@ -373,12 +375,12 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
                                 "%s TEXT NOT NULL, " +
-                                "%s INT NOT REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
+                                "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE);",
                         TABLE_NAME,
                         ID,
                         REGION,
@@ -411,7 +413,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE," +
                                 "PRIMARY KEY(%s, %s));",
@@ -435,7 +437,7 @@ public class DbConstants {
         ID = REVIEWABLE_ID;
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT UNIQUE NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s TEXT NOT NULL UNIQUE, " +
                                 "%s BLOB, " +
@@ -463,7 +465,9 @@ public class DbConstants {
                         PRICE, TYPE, RESTR_ID, REVIEWABLE_ID
                 );
 
-        public enum Type {}//TODO
+        public enum Type {
+            Big, Medium
+        }
     }
 
     public static final class Orders {
@@ -474,7 +478,7 @@ public class DbConstants {
                 TIME = "Time";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL, " +
                                 "%s INT NOT NULL);",
@@ -499,7 +503,9 @@ public class DbConstants {
                         TABLE_NAME, ID
                 );
 
-        public enum Status {}//TODO
+        public enum Status {
+            NotDone, Done
+        }
     }
 
     public static final class Bills {
@@ -512,7 +518,7 @@ public class DbConstants {
                 CUSTOMER_ID = "CustomerID";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s INT DEFAULT 0, " +
                                 "%s REAL NOT NULL, " +
@@ -559,7 +565,7 @@ public class DbConstants {
                 BILL_ID = "BillID";
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s INT NOT NULL, " +
                                 "%s INT NOT NULL, " +
@@ -592,7 +598,9 @@ public class DbConstants {
                         TABLE_NAME, ID
                 );
 
-        public enum Status {}//TODO
+        public enum Status {
+            OnWay, Delivered
+        }
     }
 
     public static final class BillContainsOrders {
@@ -602,7 +610,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "PRIMARY KEY(%s, %s));",
@@ -620,7 +628,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "PRIMARY KEY(%s, %s));",
@@ -640,7 +648,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s TEXT NOT NULL UNIQUE," +
                                 "%s INT REFERENCES %s(%s));",
@@ -674,7 +682,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT PRIMARY KEY, " +
                                 "%s TEXT NOT NULL UNIQUE);",
                         TABLE_NAME,
@@ -706,7 +714,7 @@ public class DbConstants {
 
         public static final String SQL_CREATE_TABLE =
                 String.format(
-                        "CREATE TABLE %s" +
+                        "CREATE TABLE IF NOT EXISTS %s" +
                                 "(%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "%s INT NOT NULL REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE CASCADE, " +
                                 "PRIMARY KEY(%s, %s));",

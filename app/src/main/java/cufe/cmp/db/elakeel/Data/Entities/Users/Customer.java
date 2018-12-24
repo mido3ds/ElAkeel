@@ -2,6 +2,7 @@ package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
+import cufe.cmp.db.elakeel.Data.Entities.Bill;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
 import cufe.cmp.db.elakeel.Data.Entities.Order;
 
@@ -48,7 +49,11 @@ public class Customer extends Entity {
     }
 
     public static Customer from(User user) throws Exception {
-        return null;// TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT * FROM Customers as c, Users as u WHERE c.UserID = "+user.getId()+" AND u.ID = "+user.getId(), null);
+        cursor.moveToFirst();
+        Customer customer = new Customer(cursor);
+        cursor.close();
+        return customer;
     }
 
     public User getUser() {
@@ -161,6 +166,25 @@ public class Customer extends Entity {
     }
 
     public ArrayList<Order> getOrders() {
-        return null; // TODO: 23/12/2018
+        ArrayList<Bill> bills = getBills();
+        ArrayList<Order> orders = new ArrayList<>();
+        for (Bill bill : bills) {
+            orders.addAll(bill.getOrders());
+        }
+        return orders;
+    }
+
+    public ArrayList<Bill> getBills() {
+        Cursor cursor = db.rawQuery("SELECT * FROM Bills WHERE CustomerID = ?", new String[]{
+                Long.toString(user.getId())
+        });
+        cursor.moveToFirst();
+        ArrayList<Bill> bills = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            bills.add(new Bill(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return bills;
     }
 }

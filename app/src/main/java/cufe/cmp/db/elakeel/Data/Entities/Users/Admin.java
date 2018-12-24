@@ -24,7 +24,13 @@ public class Admin extends Entity {
     }
 
     public static Admin from(User user) {
-        return null; // TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT * FROM Admins WHERE UserID = ?", new String[]{
+            Long.toString(user.getId())
+        });
+        cursor.moveToFirst();
+        Admin admin = new Admin(cursor);
+        cursor.close();
+        return admin;
     }
 
     public User getUser() {

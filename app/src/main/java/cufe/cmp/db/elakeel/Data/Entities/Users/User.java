@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
-import cufe.cmp.db.elakeel.Data.Utility.BitmapUtil;
 import cufe.cmp.db.elakeel.Data.Utility.PasswordAuthentication;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Users;
@@ -32,12 +31,19 @@ public class User extends Entity {
         this.name = name;
         this.email = email;
         setPassword(password);
-        this.image = BitmapUtil.bitmapToBytes(image);
+        //this.image = BitmapUtil.bitmapToBytes(image);
+        this.image = null;
         this.type = type;
     }
 
     public static User getUser(String username, String password) throws Exception {
-        return null;// TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT * FROM Users WHERE Name = ? AND Password = ?", new String[] {
+                username, password
+        });
+        cursor.moveToFirst();
+        User user = new User(cursor);
+        cursor.close();
+        return user;
     }
 
     public long getId() {
@@ -67,7 +73,8 @@ public class User extends Entity {
     public void setPassword(String password) {
         if (password.isEmpty()) throw new IllegalArgumentException("Password is empty");
 
-        this.hashedPassword = PASSWORD_AUTHENTICATION.hash(password.toCharArray());
+        //this.hashedPassword = PASSWORD_AUTHENTICATION.hash(password.toCharArray());
+        this.hashedPassword = password;
     }
 
     public byte[] getImage() {

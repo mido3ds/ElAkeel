@@ -1,7 +1,6 @@
 package cufe.cmp.db.elakeel.Data.Entities;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Meal;
 import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Restaurant;
@@ -75,11 +74,31 @@ public class Order extends Entity {
         return statement.executeUpdateDelete() != 0;
     }
 
-    public Restaurant getRestaurant() {
-        return null; // TODO: 23/12/2018
+    public ArrayList<Restaurant> getRestaurants() {
+        Cursor cursor = db.rawQuery("SELECT * FROM Restaurants WHERE ReviewableID in (SELECT m.RestrID FROM Meals as m, Orders as o, OrdersContainMeals as ocm WHERE o.ID = ? AND m.ID = ocm.MealID AND o.ID = ocm.OrderId)", new String[]{
+                Long.toString(id)
+        });
+        cursor.moveToFirst();
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            restaurants.add(new Restaurant(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return restaurants;
     }
 
     public ArrayList<Meal> getMeals() {
-        return null;// TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT m.* FROM Meals as m, Orders as o, OrdersContainMeals as ocm WHERE o.ID = ? AND m.ID = ocm.MealID AND o.ID = ocm.OrderId", new String[]{
+                Long.toString(id)
+        });
+        cursor.moveToFirst();
+        ArrayList<Meal> meals = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            meals.add(new Meal(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return meals;
     }
 }

@@ -1,7 +1,6 @@
 package cufe.cmp.db.elakeel.Data.Entities.Users;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Entity;
 import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Restaurant;
@@ -23,7 +22,13 @@ public class RestaurantManager extends Entity {
     }
 
     public static RestaurantManager from(User user) {
-        return null; // TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT * FROM RestaurantManagers WHERE UserID = ?", new String[]{
+            Long.toString(user.getId())
+        });
+        cursor.moveToFirst();
+        RestaurantManager manager = new RestaurantManager(cursor);
+        cursor.close();
+        return manager;
     }
 
     public User getUser() {

@@ -1,7 +1,6 @@
 package cufe.cmp.db.elakeel.Data.Entities;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Reviewable.Reviewable;
 import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
@@ -39,7 +38,14 @@ public class Review extends Entity {
     }
 
     public static Review from(Customer customer, Reviewable reviewable) {
-        return null;// TODO: 23/12/2018
+        Cursor cursor = db.rawQuery("SELECT * FROM Reviews WHERE CustomerID = ? AND ReviewableID = ?", new String[]{
+                Long.toString(customer.getUser().getId()),
+                Long.toString(reviewable.getId())
+        });
+        cursor.moveToFirst();
+        Review review = new Review(cursor);
+        cursor.close();
+        return review;
     }
 
     public long getId() {

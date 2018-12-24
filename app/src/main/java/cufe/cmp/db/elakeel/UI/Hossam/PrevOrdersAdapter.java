@@ -35,7 +35,7 @@ public class PrevOrdersAdapter extends ArrayAdapter<Order> {
         Order order = getItem(position);
 
         TextView restautantNameTextView = listItemView.findViewById(R.id.Restuarant_Name);
-        restautantNameTextView.setText(order.getRestaurant().getName());
+        restautantNameTextView.setText(order.getRestaurants().get(0).getName());
 
         TextView orderDAteTextView = listItemView.findViewById(R.id.OrderDate);
         orderDAteTextView.setText(order.getTime().toString());

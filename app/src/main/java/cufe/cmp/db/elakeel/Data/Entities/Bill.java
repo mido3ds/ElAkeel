@@ -1,9 +1,10 @@
 package cufe.cmp.db.elakeel.Data.Entities;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import cufe.cmp.db.elakeel.Data.Entities.Users.Customer;
+
+import java.util.ArrayList;
 
 import static cufe.cmp.db.elakeel.Data.Database.DbConstants.Bills;
 
@@ -92,5 +93,19 @@ public class Bill extends Entity {
         SQLiteStatement statement = db.compileStatement(Bills.SQL_DELETE);
         statement.bindLong(0, id);
         return statement.executeUpdateDelete() != 0;
+    }
+
+    public ArrayList<Order> getOrders() {
+        Cursor cursor = db.rawQuery("SELECT o.ID, o.Status, o.Time FROM Orders o, Bills b, BillContainsOrders bco WHERE o.ID = bco.OrderID AND b.ID = bco.BillID AND b.ID = ?", new String[]{
+            Long.toString(id)
+        });
+        cursor.moveToFirst();
+        ArrayList<Order> orders = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            orders.add(new Order(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return orders;
     }
 }
